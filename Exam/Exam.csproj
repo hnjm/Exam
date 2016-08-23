@@ -71,7 +71,6 @@
   <ItemGroup>
     <Compile Include="DB.cs">
       <DependentUpon>DB.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="DB.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -166,15 +165,15 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Rsx.Dumb\Rsx.Dumb.csproj">
+    <ProjectReference Include="..\..\Omni\Rsx.Dumb\Rsx.Dumb.csproj">
       <Project>{247c352f-9d2b-45f8-b0be-c0e1740283c5}</Project>
       <Name>Rsx.Dumb</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Rsx\Rsx.csproj">
+    <ProjectReference Include="..\..\Omni\Rsx\Rsx.csproj">
       <Project>{9f9e4341-5ff3-47f6-876f-a7b9c4e4faed}</Project>
       <Name>Rsx</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\VTools\VTools.csproj">
+    <ProjectReference Include="..\..\Omni\VTools\VTools.csproj">
       <Project>{1476f4ef-beec-4997-9fc3-2d1692f53811}</Project>
       <Name>VTools</Name>
     </ProjectReference>
