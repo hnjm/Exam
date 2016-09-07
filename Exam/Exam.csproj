@@ -48,7 +48,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="QRCoder">
       <HintPath>.\QRCoder.dll</HintPath>
     </Reference>
@@ -64,9 +63,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine">
-      <HintPath>.\UnityEngine.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB.cs">
@@ -154,15 +150,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-    <COMReference Include="VBIDE">
-      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>3</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Omni\Rsx.Dumb\Rsx.Dumb.csproj">
@@ -173,9 +160,13 @@
       <Project>{9f9e4341-5ff3-47f6-876f-a7b9c4e4faed}</Project>
       <Name>Rsx</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Omni\VTools\VTools.csproj">
-      <Project>{1476f4ef-beec-4997-9fc3-2d1692f53811}</Project>
-      <Name>VTools</Name>
+    <ProjectReference Include="..\..\Omni\VTools.COM\VTools.COM.csproj">
+      <Project>{4e331516-0939-4ac1-9abf-08150f08ad9a}</Project>
+      <Name>VTools.COM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Omni\VTools.Menu\VTools.Menu.csproj">
+      <Project>{9b61290a-4ca9-49b1-a71d-725bd8558949}</Project>
+      <Name>VTools.Menu</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
