@@ -206,8 +206,6 @@ namespace Exam
              return ok;
         }
 
-    
-
         private bool ValidateExamModel(string res)
         {
            

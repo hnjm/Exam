@@ -9,13 +9,7 @@ namespace Exam
 {
     public partial class ExamFrm
     {
-        private static int qrSise = 2;
-
-        //   private static  int qrSizeDB = 1;
-        private const string slash = "\\";
-
-        private static char sep = '-';
-        private static char sep2 = ',';
+     
 
         //  private  string path = Application.StartupPath;
         private static string examsFolder = "Exams";
@@ -23,14 +17,14 @@ namespace Exam
         private static string ExasmPath = path + slash + examsFolder + slash;
         private void ChangeClassConnection(String clase)
         {
-            string[] connection = DB.TAM.AnswersTableAdapter.Connection.ConnectionString.Split(';');
+            string[] connection = DB.TAMQA.AnswersTableAdapter.Connection.ConnectionString.Split(';');
 
             string newConnection = "Initial Catalog=" + clase + ";";
-            DB.TAM.AnswersTableAdapter.Connection.ConnectionString = connection[0] + ";" + newConnection + connection[2];
-            DB.TAM.QuestionsTableAdapter.Connection.ConnectionString = connection[0] + ";" + newConnection + connection[2];
+            DB.TAMQA.AnswersTableAdapter.Connection.ConnectionString = connection[0] + ";" + newConnection + connection[2];
+            DB.TAMQA.QuestionsTableAdapter.Connection.ConnectionString = connection[0] + ";" + newConnection + connection[2];
 
-            DB.TAM.AnswersTableAdapter.Fill(this.dB.Answers);
-            DB.TAM.QuestionsTableAdapter.Fill(this.dB.Questions);
+            DB.TAMQA.AnswersTableAdapter.Fill(this.dB.Answers);
+            DB.TAMQA.QuestionsTableAdapter.Fill(this.dB.Questions);
         }
         private void FillTables()
         {
@@ -42,19 +36,11 @@ namespace Exam
          //   this.carneBox.AutoCompleteCustomSource.AddRange(hs.ToArray());
             Dumb.FillABox(carneBox.ComboBox, hs, true, false);
 
-
-
-
-
             //         this.carneBox.AutoCompleteCustomSource = hs as AutoCompleteStringCollection;
             IList<string> clases = Dumb.HashFrom<string>(this.dB.StuList.ClassColumn);
             Dumb.FillABox(this.materiaBox.ComboBox, clases, true, false);
 
-
-
             DB.TAM.StudentTableAdapter.Fill(this.dB.Student);
-            //     DB.TAM.StuListTableAdapter.Fill(this.dB.StuList);
-
 
             ///  CleanOrphans();
      
@@ -88,10 +74,6 @@ namespace Exam
 
         private void SetBindings()
         {
-            //this.validator.Visible = false;
-        //    this.verBox.Visible = false;
-        //    this.resultlbl.Visible = false;
-
             String txt = "Text";
             DataSourceUpdateMode mode = DataSourceUpdateMode.OnPropertyChanged;
 
@@ -99,20 +81,17 @@ namespace Exam
             Binding correct = new Binding(txt, this.studentBS, this.dB.Student.CorrectColumn.ColumnName, true, mode);
             Binding name = new Binding(txt, this.stuListBS, this.dB.StuList.FirstNamesColumn.ColumnName, true, mode);
             Binding surname = new Binding(txt, this.stuListBS, this.dB.StuList.LastNamesColumn.ColumnName, true, mode);
+
             Binding title = new Binding(txt, this.preferencesBS, this.dB.Preferences.TitleColumn.ColumnName, true, mode);
             Binding Classe = new Binding(txt, this.preferencesBS, this.dB.Preferences.ClassColumn.ColumnName, true, mode);
        //     Binding StudentIDs = new Binding(txt, this.stuListBS, this.dB.StuList.StudentIDColumn.ColumnName, true, mode);
-
-           
             this.scoreBox.TextBox.DataBindings.Add(score);
             this.CorrectBox.TextBox.DataBindings.Add(correct);
             this.nameBox.TextBox.DataBindings.Add(name);
             this.surnameBox.TextBox.DataBindings.Add(surname);
             this.titleBox.TextBox.DataBindings.Add(title);
             this.materiaBox.ComboBox.DataBindings.Add(Classe);
-         //   this.carneBox.ComboBox.DataBindings.Add(StudentIDs);
-           
-        
+
 
 
             Binding question = new Binding(txt, this.questionsBS, this.dB.Questions.QuestionMetaColumn.ColumnName, true, mode);
@@ -121,26 +100,33 @@ namespace Exam
             this.richQuesBox.DataBindings.Add(question);
             this.richAnsBox.DataBindings.Add(answer);
 
+
+            string asc = " asc";
+            string desc = " desc";
+            // preferences is done=FALSE as we want to create
             this.preferencesBS.Filter = this.dB.Preferences.DoneColumn.ColumnName + " = false";
+            // log is preferences executed (exams generated)
             this.logBS.Filter = this.dB.Preferences.DoneColumn.ColumnName + " = true";
-            this.logBS.Sort = this.dB.Preferences.DateTimeColumn.ColumnName + " desc";
+            this.logBS.Sort = this.dB.Preferences.DateTimeColumn.ColumnName + desc;
 
-            this.examsListBS.Sort = this.dB.ExamsList.EIDColumn.ColumnName + " desc";
-            this.examsBS.Sort = this.dB.Exams.IDColumn.ColumnName + " asc";
-
-            this.answersBS.Sort = this.dB.Answers.CorrectColumn.ColumnName + " asc";
-
-            this.questionsBS.Sort = this.dB.Questions.QIDColumn.ColumnName + " asc";
-            this.orderBS.Sort = this.dB.Order.IDColumn.ColumnName + " asc";
+            this.examsListBS.Sort = this.dB.ExamsList.EIDColumn.ColumnName + desc;
+            this.examsBS.Sort = this.dB.Exams.IDColumn.ColumnName + asc;
+            this.answersBS.Sort = this.dB.Answers.CorrectColumn.ColumnName + asc;
+            this.questionsBS.Sort = this.dB.Questions.QIDColumn.ColumnName + asc;
+            this.orderBS.Sort = this.dB.Order.IDColumn.ColumnName + asc;
         }
 
         private void SetMenues()
         {
+
+            //initial binding source to link to
             this.ucMenu.BS = this.preferencesBS;
 
-            // DB.TAM.OrderTableAdapter = null; ///IMPORTANTE PARA NO GUARDAR ESTA PAJA
-            this.ucMenu.TableAM = DB.TAM;
+           //table adapter
+            this.ucMenu.TableAM[0] = DB.TAM;
+            this.ucMenu.TableAM[1] = DB.TAMQA;
 
+            //selection change option
             this.ucMenu.DgvSelectionChanged = this.dGV_SelectionChanged;
 
             this.ucMenu.SetDGVs(ref preferencesDGV);
@@ -157,15 +143,14 @@ namespace Exam
             // EventHandler h2 = this.generateList_Click;
             EventHandler h3 = this.deleteExams_Clicked;
             EventHandler h4 = this.generateQuestion_Clicked;
-
             EventHandler h2 = this.form_Load;
             this.ucMenu.SetReload(ref h2);
             //  EventHandler h3 =  this.convertPDF_Click;
             this.ucMenu.SetMenues("Generar Exámenes", ref h1);
             //   this.ucMenu.SetMenues("Generar Listas", ref h2);
             this.ucMenu.SetMenues("Limpiar Base de Datos de Exámenes", ref h3);
-
             this.ucMenu.SetMenues("Agregar una pregunta", ref h4);
+
         }
 
         private void SetStatusException(ref Exception ex)

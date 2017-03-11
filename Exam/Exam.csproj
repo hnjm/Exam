@@ -74,6 +74,9 @@
       <DependentUpon>DB.xsd</DependentUpon>
     </Compile>
     <Compile Include="Exam.Tools.cs" />
+    <Compile Include="ExamFrm.DGV.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ExamFrm.Engine.cs">
       <SubType>Form</SubType>
     </Compile>

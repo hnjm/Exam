@@ -290,6 +290,7 @@
             this.toolStripLabel4.Name = "toolStripLabel4";
             this.toolStripLabel4.Size = new System.Drawing.Size(79, 35);
             this.toolStripLabel4.Text = "Materia";
+            this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
             // 
             // materiaBox
             // 
@@ -1298,7 +1299,7 @@
             this.dbTLP.ColumnCount = 3;
             this.dbTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.80335F));
             this.dbTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.19665F));
-            this.dbTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 434F));
+            this.dbTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 442F));
             this.dbTLP.Controls.Add(this.questionsDataGridView, 0, 0);
             this.dbTLP.Controls.Add(this.answersDataGridView, 2, 0);
             this.dbTLP.Controls.Add(this.splitContainer1, 1, 0);
@@ -1327,7 +1328,7 @@
             this.questionsDataGridView.Location = new System.Drawing.Point(3, 4);
             this.questionsDataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.questionsDataGridView.Name = "questionsDataGridView";
-            this.questionsDataGridView.Size = new System.Drawing.Size(395, 594);
+            this.questionsDataGridView.Size = new System.Drawing.Size(391, 594);
             this.questionsDataGridView.TabIndex = 1;
             this.questionsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.questionsDataGridView_CellContentClick);
             // 
@@ -1382,10 +1383,10 @@
             this.dataGridViewTextBoxColumn4});
             this.answersDataGridView.DataSource = this.answersBS;
             this.answersDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.answersDataGridView.Location = new System.Drawing.Point(842, 4);
+            this.answersDataGridView.Location = new System.Drawing.Point(834, 4);
             this.answersDataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.answersDataGridView.Name = "answersDataGridView";
-            this.answersDataGridView.Size = new System.Drawing.Size(429, 594);
+            this.answersDataGridView.Size = new System.Drawing.Size(437, 594);
             this.answersDataGridView.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn1
@@ -1430,7 +1431,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(404, 3);
+            this.splitContainer1.Location = new System.Drawing.Point(400, 3);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1443,7 +1444,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richAnsBox);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Size = new System.Drawing.Size(432, 596);
+            this.splitContainer1.Size = new System.Drawing.Size(428, 596);
             this.splitContainer1.SplitterDistance = 358;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -1452,7 +1453,7 @@
             this.richQuesBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richQuesBox.Location = new System.Drawing.Point(0, 0);
             this.richQuesBox.Name = "richQuesBox";
-            this.richQuesBox.Size = new System.Drawing.Size(432, 358);
+            this.richQuesBox.Size = new System.Drawing.Size(428, 358);
             this.richQuesBox.TabIndex = 0;
             this.richQuesBox.Text = "";
             // 
@@ -1461,7 +1462,7 @@
             this.richAnsBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richAnsBox.Location = new System.Drawing.Point(0, 0);
             this.richAnsBox.Name = "richAnsBox";
-            this.richAnsBox.Size = new System.Drawing.Size(432, 234);
+            this.richAnsBox.Size = new System.Drawing.Size(428, 234);
             this.richAnsBox.TabIndex = 0;
             this.richAnsBox.Text = "";
             // 

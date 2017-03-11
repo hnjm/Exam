@@ -14,11 +14,19 @@ namespace Exam
     public partial class ExamFrm
     {
         #region FIELDS
+        private static int qrSise = 2;
+
+      
+        private const string slash = "\\";
+
+        private static char sep = '-';
+        private static char sep2 = ',';
+
+
 
         private bool working = false;
 
-        //      private  IList<W.Application> WApp = null;
-
+    
         private static string WordTemplateFile = "WordDoc";
 
         private static string model = "Model-";
@@ -26,14 +34,13 @@ namespace Exam
         private static string jpgExt = ".jpg";
         private static string pdfExt = ".pdf";
         private static string WordExt = ".docx";
-        protected static string path = Application.StartupPath.ToString();
+        private static string path = Application.StartupPath.ToString();
         private static string templateFile = path + slash + WordTemplateFile + WordExt;
         private static string idFile = path + slash + "identification" + jpgExt;
         private static string logoFile = path + slash + "logo" + jpgExt;
 
         //FOR WORD DOCUMENT GENERATION INTEROP
         private static object nullObj = System.Reflection.Missing.Value;
-
         private static object roObj = true;
 
         #endregion FIELDS
@@ -51,7 +58,7 @@ namespace Exam
                 DB.QuestionsRow q = this.dB.Questions.NewQuestionsRow();
                 q.Weight = j;
                 this.dB.Questions.AddQuestionsRow(q);
-                DB.TAM.QuestionsTableAdapter.Update(q);
+                DB.TAMQA.QuestionsTableAdapter.Update(q);
 
                 q.Question = "Pregunta número " + q.QID.ToString();
                
@@ -63,15 +70,15 @@ namespace Exam
                     r.QID = q.QID;
                     if (m == 5) r.Correct = true;
                     this.dB.Answers.AddAnswersRow(r);
-                    DB.TAM.AnswersTableAdapter.Update(r);
+                    DB.TAMQA.AnswersTableAdapter.Update(r);
                     m++;
                 }
                
                 j++;
             }
 
-            DB.TAM.QuestionsTableAdapter.Update(this.dB.Questions);
-            DB.TAM.AnswersTableAdapter.Update(this.dB.Answers);
+            DB.TAMQA.QuestionsTableAdapter.Update(this.dB.Questions);
+            DB.TAMQA.AnswersTableAdapter.Update(this.dB.Answers);
 
 
         }
@@ -100,19 +107,16 @@ namespace Exam
             DataRow row = (this.preferencesBS.Current as DataRowView).Row;
 
             DB.PreferencesRow p = row as DB.PreferencesRow;
-            p.Done = false;
-
-            Dumb.CloneARow(this.dB.Preferences, p);
-           
+             
             this.dB.Questions.Clear();
             this.dB.Answers.Clear();
 
-           
-
             p.Done = true;
+         //   p.Class = materiaBox.Text;
             p.DateTime = DateTime.Now;
+            ChangeClassConnection(p.Class);
 
-            this.logBS.MoveFirst();
+            this.logBS.MoveFirst(); //select item to clone
             Application.DoEvents();
 
             working = true;
@@ -161,6 +165,9 @@ namespace Exam
             MakeTableBytes(ref p);
             Application.DoEvents();
 
+            DB.PreferencesRow pClone = Dumb.CloneARow(this.dB.Preferences, p) as DB.PreferencesRow;
+            pClone.Done = false;
+
             DB.TAM.PreferencesTableAdapter.Update(this.dB.Preferences);
 
             this.dB.Order.Clear();
@@ -177,14 +184,7 @@ namespace Exam
         /// <param name="p"></param>
         private DB.ExamsListRow DoOneExam(ref DB.PreferencesRow p)
         {
-            //    Microsoft.Office.Interop.Word.Application d = new Microsoft.Office.Interop.Word.Application();
-
-            String clase = p.Class;
-
-            ChangeClassConnection(clase);
-
-
-
+         
             this.statuslbl.Text = Resources.Creando + this.dB.Questions.Count + Resources.PregAleatorias;
             ///RANDOMNIZE RAW QUESTIONS
             IEnumerable<DB.QuestionsRow> questions = this.dB.Questions; //toma todas las preguntas

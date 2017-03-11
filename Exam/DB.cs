@@ -10,6 +10,7 @@
         /// <summary>
         /// Must be initialized first
         /// </summary>
+        public static DBTableAdapters.TableAdapterManager TAMQA;
         public static DBTableAdapters.TableAdapterManager TAM;
 
         /// <summary>
@@ -19,24 +20,27 @@
         public static void SetTAM(ref DB dB)
         {
             TAM = new DBTableAdapters.TableAdapterManager();
+            TAMQA = new DBTableAdapters.TableAdapterManager();
             hsTA = new System.Collections.Hashtable();
 
-            TAM.AnswersTableAdapter = new DBTableAdapters.AnswersTableAdapter();
+            TAMQA.AnswersTableAdapter = new DBTableAdapters.AnswersTableAdapter();
             TAM.BackupDataSetBeforeUpdate = false;
+            TAMQA.BackupDataSetBeforeUpdate = false;
             TAM.ExamsListTableAdapter = new DBTableAdapters.ExamsListTableAdapter();
             TAM.ExamsTableAdapter = new DBTableAdapters.ExamsTableAdapter();
             TAM.OrderTableAdapter = null; // new DBTableAdapters.OrderTableAdapter();
             TAM.PreferencesTableAdapter = new DBTableAdapters.PreferencesTableAdapter();
-            TAM.QuestionsTableAdapter = new DBTableAdapters.QuestionsTableAdapter();
+            TAMQA.QuestionsTableAdapter = new DBTableAdapters.QuestionsTableAdapter();
             TAM.StudentTableAdapter = new DBTableAdapters.StudentTableAdapter();
             TAM.StuListTableAdapter = new DBTableAdapters.StuListTableAdapter();
             TAM.UpdateOrder = DBTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            TAMQA.UpdateOrder = DBTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
 
-            hsTA.Add(dB.Answers.TableName, TAM.AnswersTableAdapter);
+            hsTA.Add(dB.Answers.TableName, TAMQA.AnswersTableAdapter);
             hsTA.Add(dB.Exams.TableName, TAM.ExamsTableAdapter);
             hsTA.Add(dB.ExamsList.TableName, TAM.ExamsListTableAdapter);
             hsTA.Add(dB.Preferences.TableName, TAM.PreferencesTableAdapter);
-            hsTA.Add(dB.Questions.TableName, TAM.QuestionsTableAdapter);
+            hsTA.Add(dB.Questions.TableName, TAMQA.QuestionsTableAdapter);
             hsTA.Add(dB.Student.TableName, TAM.StudentTableAdapter);
             hsTA.Add(dB.StuList.TableName, TAM.StuListTableAdapter);
 
