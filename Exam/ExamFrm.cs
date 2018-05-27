@@ -30,6 +30,10 @@ namespace Exam
             SetBindings();
 
 
+            this.materiaBox.TextChanged += delegate
+              {
+                  ChangeClassConnection(this.materiaBox.Text);
+              };
 
 
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using Rsx;
+using Rsx.Dumb;
 
 namespace Exam
 {
@@ -31,14 +31,14 @@ namespace Exam
             this.dB.Clear();
 
             DB.TAM.StuListTableAdapter.Fill(this.dB.StuList);
-            ICollection<string> hs = Rsx.Dumb.HashFrom<string>(this.dB.StuList.StudentIDColumn);
+            ICollection<string> hs = Hash.HashFrom<string>(this.dB.StuList.StudentIDColumn);
          //   this.carneBox.AutoCompleteCustomSource.Clear();
          //   this.carneBox.AutoCompleteCustomSource.AddRange(hs.ToArray());
-            Dumb.FillABox(carneBox.ComboBox, hs, true, false);
+            UIControl.FillABox(carneBox.ComboBox, hs, true, false);
 
             //         this.carneBox.AutoCompleteCustomSource = hs as AutoCompleteStringCollection;
-            IList<string> clases = Dumb.HashFrom<string>(this.dB.StuList.ClassColumn);
-            Dumb.FillABox(this.materiaBox.ComboBox, clases, true, false);
+            IList<string> clases = Hash.HashFrom<string>(this.dB.StuList.ClassColumn);
+            UIControl.FillABox(this.materiaBox.ComboBox, clases, true, false);
 
             DB.TAM.StudentTableAdapter.Fill(this.dB.Student);
 
@@ -94,8 +94,8 @@ namespace Exam
 
 
 
-            Binding question = new Binding(txt, this.questionsBS, this.dB.Questions.QuestionMetaColumn.ColumnName, true, mode);
-            Binding answer = new Binding(txt, this.answersBS, this.dB.Answers.AnswerMetaColumn.ColumnName, true, mode);
+            Binding question = new Binding(txt, this.questionsBS, this.dB.Questions.QuestionColumn.ColumnName, true, mode);
+            Binding answer = new Binding(txt, this.answersBS, this.dB.Answers.AnswerColumn.ColumnName, true, mode);
 
             this.richQuesBox.DataBindings.Add(question);
             this.richAnsBox.DataBindings.Add(answer);
@@ -162,43 +162,60 @@ namespace Exam
         {
             Type tipo = l.GetType();
             byte[] arr2 = null;
-            string afile = null;
+       //     string afile = string.Empty;
+           
             if (tipo.Equals(typeof(DB.ExamsListRow)))
             {
                 DB.ExamsListRow ls = l as DB.ExamsListRow;
-                DB.ExamsDataTable exdt = new DB.ExamsDataTable();
+             
 
                 IEnumerable<DB.ExamsRow> rows = ls.GetExamsRows();
-                afile = ExasmPath + ls.EID.ToString();
-                arr2 = Dumb.MakeDTBytes(ref rows, ref exdt, afile);
+
+                DB.ExamsDataTable exdt = new DB.ExamsDataTable();
+                foreach (var item in rows) exdt.ImportRow(item);
+
+              //   afile = ExasmPath + ls.EID.ToString();
+
+                arr2 = Tables.MakeDTBytes( ref exdt, ExasmPath);
                 ls.EData = arr2;
             }
             else if (tipo.Equals(typeof(DB.ExamsRow)))
             {
                 //SAVE COPY OF TABLE
-                DB.AnswersDataTable adt = new DB.AnswersDataTable();
+              
                 DB.ExamsRow ex = l as DB.ExamsRow;
 
+             
+              //  afile = ExasmPath + ex.QID.ToString();
+                //    IEnumerable<DB.QuestionsRow> shortQlist = new List<DB.QuestionsRow>();
+                //   ((IList<DB.QuestionsRow>)shortQlist).Add(ex.QuestionsRow);
                 DB.QuestionsDataTable qdt = new DB.QuestionsDataTable();
-                string qfile = ExasmPath + ex.QID.ToString();
-                IEnumerable<DB.QuestionsRow> shortQlist = new List<DB.QuestionsRow>();
-                ((IList<DB.QuestionsRow>)shortQlist).Add(ex.QuestionsRow);
-                byte[] qarray = Dumb.MakeDTBytes(ref shortQlist, ref qdt, qfile);
+                qdt.ImportRow(ex.QuestionsRow);
+                byte[] qarray = Tables.MakeDTBytes( ref qdt, ExasmPath);
                 ex.QData = qarray;
+                Dumb.FD(ref qdt);
 
+                DB.AnswersDataTable adt = new DB.AnswersDataTable();
                 IEnumerable<DB.AnswersRow> answ = ex.QuestionsRow.GetAnswersRows();
-                afile = ExasmPath + ex.ID.ToString();
-                arr2 = Dumb.MakeDTBytes(ref answ, ref  adt, afile);
-                ex.AData = arr2;
+                foreach (var item in answ) adt.ImportRow(item);
+             //   afile = ExasmPath + ex.QueToString() + ".xml";
+                arr2 = Tables.MakeDTBytes(ref  adt, ExasmPath);
+               ex.AData = arr2;
+                Dumb.FD(ref adt);
             }
             else if (tipo.Equals(typeof(DB.PreferencesRow)))
             {
                 DB.PreferencesRow p = l as DB.PreferencesRow;              //SAVE A COPY OF EXAMS LISTS
                 IEnumerable<DB.ExamsListRow> rows = p.GetExamsListRows();
+
                 DB.ExamsListDataTable dt = new DB.ExamsListDataTable();
-                afile = ExasmPath + p.PID.ToString() + ".xml";
-                arr2 = Dumb.MakeDTBytes(ref rows, ref dt, afile);
+                foreach (var item in rows) dt.ImportRow(item);
+              
+            //    afile = ExasmPath + p.PID.ToString() + ".xml";
+                arr2 = Tables.MakeDTBytes( ref dt, ExasmPath);
                 p.ELData = arr2;
+
+                Dumb.FD(ref dt);
             }
         }
     }

@@ -6,6 +6,12 @@ using System.Linq;
 using QRCoder;
 using W = Microsoft.Office.Interop.Word;
 
+using System.Windows.Forms;
+using Exam.DBTableAdapters;
+using Exam.Properties;
+using Rsx.Dumb;
+
+
 namespace Exam
 {
     public static class Tools

@@ -8,6 +8,8 @@ namespace Exam
 {
     public partial class ExamFrm
     {
+        private char StudentIDSeparator = '@';
+
         private string password = "000015325971";
         private DB.ExamsListRow currentExam = null;
 
@@ -78,7 +80,9 @@ namespace Exam
          
         }
 
-      //  private string res = string.Empty;
+        //  private string res = string.Empty;
+
+    
 
         private void AssociateExamOrStudent() //tiene que ser toda una funcion
         {
@@ -98,7 +102,7 @@ namespace Exam
              
            
 
-                bool IDScanned = res.Contains('*');
+                bool IDScanned = res.Contains(StudentIDSeparator);
                 if (IDScanned) //but if it was scanned as a StuID and Answer...
                 {
 
@@ -106,7 +110,7 @@ namespace Exam
 
                     string stuID = string.Empty; //use as default the carnebox Text
          
-                    string[] StuIDAnswer = res.Split('*');
+                    string[] StuIDAnswer = res.Split(StudentIDSeparator);
                     stuID = StuIDAnswer[0];
                     answerRAW = StuIDAnswer[1];
                     res = string.Empty; //IMPORTANTISIMO RESETEA LA VARIABLE GLOBAL!!! UNA VEZ ACEPTADO EL CARNET*RESPUESTA

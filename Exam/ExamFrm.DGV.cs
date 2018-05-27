@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Exam.DBTableAdapters;
 using Exam.Properties;
-using Rsx;
+using Rsx.Dumb;
 using W = Microsoft.Office.Interop.Word;
 
 namespace Exam
@@ -73,19 +73,23 @@ namespace Exam
 
                     this.examsBS.Filter = this.dB.Exams.EIDColumn.ColumnName + " = " + r.EID;
 
+                    DB.TAM.ExamsTableAdapter.FillByEID(dt, r.EID);
+
+                    /*
                     //now find the examsTablewith questions and answers for the EXAM (list)
-                    if (!r.IsEDataNull())
+                   if (!r.IsEDataNull())
                     {
-                        string eid = ExasmPath + r.EID.ToString() + ".xml";
+                      //  string eid = ExasmPath + r.EID.ToString() + ".xml";
                         auxiliar = r.EData;
 
-                        Dumb.ReadDTBytes(eid, ref auxiliar, ref dt);
+                        Tables.ReadDTBytes(ExasmPath, ref auxiliar, ref dt);
                     }
                     else
                     {
                         DB.TAM.ExamsTableAdapter.FillByEID(dt, r.EID);
                         //   MakeTableBytes(ref r);
                     }
+                   */
                 }
                 else if (sender.Equals(this.logDGV))
                 {
@@ -97,17 +101,20 @@ namespace Exam
 
                     this.examsListBS.Filter = this.dB.ExamsList.PIDColumn.ColumnName + " = " + r.PID;
 
+                    DB.TAM.ExamsListTableAdapter.FillByPID(dt, r.PID);
+                    /*
                     if (!r.IsELDataNull())
                     {
-                        string pid = ExasmPath + r.PID.ToString() + ".xml";
+                       // string pid = ExasmPath + r.PID.ToString() + ".xml";
                         auxiliar = r.ELData;
-                        Dumb.ReadDTBytes(pid, ref auxiliar, ref dt);
+                        Tables.ReadDTBytes(ExasmPath,ref auxiliar, ref dt);
                     }
                     else
                     {
                         DB.TAM.ExamsListTableAdapter.FillByPID(dt, r.PID);
                         //  MakeTableBytes(ref r);
                     }
+                    */
                 }
             }
             catch (SystemException ex)
@@ -125,10 +132,10 @@ namespace Exam
             if (!r.IsExamFileNull())
             {
                 byte[] arr = r.ExamFile;
-                Dumb.WriteBytesFile(ref arr, destFile);
+                IO.WriteFileBytes(ref arr, destFile);
             }
 
-            Rsx.Dumb.Process(new System.Diagnostics.Process(), ExasmPath, "explorer.exe", destFile, true, false, 10000);
+            IO.Process(new System.Diagnostics.Process(), ExasmPath, "explorer.exe", destFile, true, false, 10000);
         }
 
     }

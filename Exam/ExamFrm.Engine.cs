@@ -6,9 +6,10 @@ using System.Linq;
 using System.Windows.Forms;
 using Exam.DBTableAdapters;
 using Exam.Properties;
-using Rsx;
+using Rsx.Dumb;
 using W = Microsoft.Office.Interop.Word;
 
+//using W = Microsoft.Office.in
 namespace Exam
 {
     public partial class ExamFrm
@@ -162,10 +163,10 @@ namespace Exam
 
             }
 
-            MakeTableBytes(ref p);
+           MakeTableBytes(ref p);
             Application.DoEvents();
 
-            DB.PreferencesRow pClone = Dumb.CloneARow(this.dB.Preferences, p) as DB.PreferencesRow;
+            DB.PreferencesRow pClone = Tables.CloneARow(this.dB.Preferences, p) as DB.PreferencesRow;
             pClone.Done = false;
 
             DB.TAM.PreferencesTableAdapter.Update(this.dB.Preferences);
@@ -232,7 +233,7 @@ namespace Exam
                 ex.AIDString = code;
 
                 DB.ExamsRow auxiliar = ex;
-                MakeTableBytes(ref auxiliar);
+               MakeTableBytes(ref auxiliar);
             }
             DB.TAM.ExamsTableAdapter.Update(this.dB.Exams);
             Application.DoEvents();
@@ -332,7 +333,7 @@ namespace Exam
 
 
         
-            Byte[] rtf = Dumb.ReadFileBytes(filePDF);
+            Byte[] rtf = IO.ReadFileBytes(filePDF);
             ls.ExamFile = rtf; //salva una copia del archivo PDF en el servidor SQL
             DB.TAM.ExamsListTableAdapter.Update(ls);
             System.IO.File.Delete(filePDF);
