@@ -17,11 +17,14 @@ namespace Exam
         private static string ExasmPath = path + slash + examsFolder + slash;
         private void ChangeClassConnection(String clase)
         {
+            if (clase.CompareTo(string.Empty) == 0) return;
             string[] connection = DB.TAMQA.AnswersTableAdapter.Connection.ConnectionString.Split(';');
 
             string newConnection = "Initial Catalog=" + clase + ";";
-            DB.TAMQA.AnswersTableAdapter.Connection.ConnectionString = connection[0] + ";" + newConnection + connection[2];
-            DB.TAMQA.QuestionsTableAdapter.Connection.ConnectionString = connection[0] + ";" + newConnection + connection[2];
+
+            string total = connection[0] + ";" + newConnection + connection[2];
+            DB.TAMQA.AnswersTableAdapter.Connection.ConnectionString = total;
+            DB.TAMQA.QuestionsTableAdapter.Connection.ConnectionString = total;
 
             DB.TAMQA.AnswersTableAdapter.Fill(this.dB.Answers);
             DB.TAMQA.QuestionsTableAdapter.Fill(this.dB.Questions);
