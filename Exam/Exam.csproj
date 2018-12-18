@@ -86,6 +86,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\BS.cs" />
     <Compile Include="DB.cs">
       <DependentUpon>DB.xsd</DependentUpon>
     </Compile>
@@ -94,19 +95,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Exam.Tools.cs" />
-    <Compile Include="ExamFrm.DGV.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ExamFrm.Engine.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Interface\Exam.Tools.cs" />
     <Compile Include="ExamFrm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ExamFrm.Designer.cs">
       <DependentUpon>ExamFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interface\Interface.cs" />
+    <Compile Include="Interface\Generator.cs" />
+    <Compile Include="Interface\Validator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ExamFrm.resx">
@@ -122,6 +120,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="DB.xsc">
       <DependentUpon>DB.xsd</DependentUpon>
     </None>
@@ -130,15 +129,9 @@
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DB.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="ExamFrm.Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <None Include="DB.xss">
       <DependentUpon>DB.xsd</DependentUpon>
     </None>
-    <Compile Include="ExamFrm.Validation.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

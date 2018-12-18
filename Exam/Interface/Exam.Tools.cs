@@ -1,27 +1,23 @@
-﻿using System;
+﻿using QRCoder;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using QRCoder;
 using W = Microsoft.Office.Interop.Word;
-
-using System.Windows.Forms;
-using Exam.DBTableAdapters;
-using Exam.Properties;
-using Rsx.Dumb;
-
 
 namespace Exam
 {
     public static class Tools
     {
-        public static byte[] imageToByteArray(System.Drawing.Image imageIn)
-        {
-            MemoryStream ms = new MemoryStream();
-            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
-            return ms.ToArray();
-        }
+        public static char[] Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+
+        private static readonly Random GetRandom = new Random();
+
+        private static QRCodeGenerator qrGenerator = new QRCodeGenerator();
+
+        //no lo uso
+        public enum Options { A = 1, B, C, D, E };
 
         public static Image byteArrayToImage(byte[] byteArrayIn)
         {
@@ -29,8 +25,6 @@ namespace Exam
             Image returnImage = Image.FromStream(ms);
             return returnImage;
         }
-
-        private static QRCodeGenerator qrGenerator = new QRCodeGenerator();
 
         public static Image CreateQRCode(string identifier, int size)
         {
@@ -40,32 +34,24 @@ namespace Exam
             return img;
         }
 
-        //no lo uso
-        public enum Options { A = 1, B, C, D, E };
-
-        public static char[] Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-
-        private static readonly Random GetRandom = new Random();
-
-        public static void StripAnswer(ref string provided)
+        public static byte[] imageToByteArray(System.Drawing.Image imageIn)
         {
-         provided = provided.ToUpper();
-         provided = provided.Replace('-', ' ');
-         provided = provided.Replace('*', ' ');
-         provided = provided.Replace('_', ' ');
-         provided = provided.Replace('/', ' ');
-         provided = provided.Replace('+', ' ');
-         provided = provided.Replace('\\', ' ');
-         provided = provided.Replace(" ", null);
-         provided = provided.Trim();
-            
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
+        public static void MakePDF(ref W.Document doc)
+        {
+            object fileName = doc.FullName.Replace(".docx", ".pdf");
+
+            object type = W.WdExportFormat.wdExportFormatPDF;
+            doc.SaveAs2(ref fileName, ref type);
         }
 
         public static IEnumerable<T> RandomizeStrings<T>(IEnumerable<T> arr)
         {
             List<KeyValuePair<int, T>> list = new List<KeyValuePair<int, T>>();
-            // Add all strings from array
-            // Add new random int each time
+            // Add all strings from array Add new random int each time
             int max = arr.Count();
             foreach (T s in arr)
             {
@@ -88,12 +74,17 @@ namespace Exam
             return result;
         }
 
-        public static void MakePDF(ref W.Document doc)
+        public static void StripAnswer(ref string provided)
         {
-            object fileName = doc.FullName.Replace(".docx", ".pdf");
-
-            object type = W.WdExportFormat.wdExportFormatPDF;
-            doc.SaveAs2(ref fileName, ref type);
+            provided = provided.ToUpper();
+            provided = provided.Replace('-', ' ');
+            provided = provided.Replace('*', ' ');
+            provided = provided.Replace('_', ' ');
+            provided = provided.Replace('/', ' ');
+            provided = provided.Replace('+', ' ');
+            provided = provided.Replace('\\', ' ');
+            provided = provided.Replace(" ", null);
+            provided = provided.Trim();
         }
     }
 }

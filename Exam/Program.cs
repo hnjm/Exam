@@ -13,7 +13,12 @@ namespace Exam
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ExamFrm());
+            string path = Application.StartupPath.ToString();
+
+            ExamFrm.Interface = new Exam.Interface(path);
+            ExamFrm form = new ExamFrm();
+            form.WindowState = FormWindowState.Maximized;
+            Application.Run(form);
         }
     }
 }

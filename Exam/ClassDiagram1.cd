@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Exam.DB">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="Exam.DB.OrderRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Exam.DB.AYearRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.AnswersDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.AnswersRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.ExamsListRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.StudentRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.StudentDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Exam.DB.QuestionsRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Exam.DB.OrderRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Exam.DB.ClassRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Delegate Name="Exam.DB.AnswersRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Exam.DB.OrderDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.StuListRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.ClassRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.ExamsRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Exam.DB.PreferencesRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Exam.DB.StuListDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.QuestionsRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.ExamsRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.PreferencesRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Exam.DB.ExamsRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Exam.DB.StudentRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.ExamsListRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.ExamsListDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.QuestionsRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.QuestionsDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Exam.DB.StudentRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Exam.DB.PreferencesRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.AYearRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Exam.DB.ExamsListRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Exam.DB.PreferencesDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.ExamsDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Exam.DB.AYearRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Exam.DB.StuListRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.ClassDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Exam.DB.StuListRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Exam.DB.AnswersRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.OrderRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.ClassRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Exam.DB.AYearDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAEQDKEAexNRAApRRAIAYACIAAoGQDgGwABiAgkgRFA=</HashCode>
+      <FileName>DB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Exam.ExamFrm" Collapsed="true">
+    <Position X="11.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EiBwFL5VkDpY4fbTgH/FolhSEAAVAWVUgUFiUI0oBRQ=</HashCode>
+      <FileName>ExamFrm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Exam.BS">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAgQAAAAAAAAEQAAAgCAAAAAABEQAIoIAACAEA=</HashCode>
+      <FileName>Interface\BS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Exam.Tools" Collapsed="true">
+    <Position X="14.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAABAAAAAAAAQAAQgAAAAAFIABAAAAAAAAAA=</HashCode>
+      <FileName>Interface\Exam.Tools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Exam.Generator">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wBAAAGICAIBACkCCAJBiAAAAgMCBIEAACUAQgBguAAE=</HashCode>
+      <FileName>Interface\Generator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Exam.Interface" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAEAAAAAAIAAAAAAgAAACAAAIECAAAAAAAAAgA=</HashCode>
+      <FileName>Interface\Interface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Exam.Validator">
+    <Position X="4.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAQABIQEAAAAJAAACCCAAAE3CAAABAAlIAAGA=</HashCode>
+      <FileName>Interface\Validator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Exam.Properties.Resources" Collapsed="true">
+    <Position X="14" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAACQAAFAABABIAERVIABIQAAAAAIIICAAIABBYA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Exam.Properties.Settings" Collapsed="true">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAIAAAAAABAAAAACAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
