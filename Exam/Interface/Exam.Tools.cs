@@ -40,6 +40,7 @@ namespace Exam
             imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
             return ms.ToArray();
         }
+
         public static void MakePDF(ref W.Document doc)
         {
             object fileName = doc.FullName.Replace(".docx", ".pdf");

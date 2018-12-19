@@ -39,7 +39,6 @@ namespace Exam
 
         public string AssignStudent(string old)
         {
-
             this.currentStudent = null;
 
             string valu = old;
@@ -47,20 +46,20 @@ namespace Exam
             Tools.StripAnswer(ref valu);
             if (valu.CompareTo(old) != 0)
             {
-                   return valu;
+                return valu;
             }
 
             if (string.IsNullOrEmpty(valu)) return old;
 
             if (string.IsNullOrWhiteSpace(valu)) return old;
 
-        //    old = valu;
+            // old = valu;
 
             inter.Status = Resources.BuscandoEstudiante;
-      
+
             try
             {
-           //     inter.IdB.Student.Clear();
+                // inter.IdB.Student.Clear();
 
                 DataRow stu = inter.IdB.StuList.FirstOrDefault(o => o.StudentID.CompareTo(valu) == 0);
                 if (stu == null)
@@ -81,8 +80,8 @@ namespace Exam
                 // currentStudent = stu; //yes, but do not add to the table yet
 
                 inter.Status = Resources.EstudianteEncontrado;
-    
-              //  if (currentStudent == null) return valu;
+
+                // if (currentStudent == null) return valu;
 
                 if (currentStudent.IsScoreNull())
                 {
@@ -92,7 +91,6 @@ namespace Exam
                 {
                     this.inter.Status = Resources.EstudianteEvaluado;
                 }
-            
             }
             catch (Exception ex)
             {
@@ -124,7 +122,6 @@ namespace Exam
 
             if (decrypto == null) return validated;
 
-
             currentExam = inter.IdB.ExamsList.FirstOrDefault(o => o.GUID.CompareTo(decrypto) == 0);
 
             if (currentExam != null)
@@ -135,14 +132,12 @@ namespace Exam
             else
             {
                 this.inter.Status = Resources.QRNoEncontrado;
-            
             }
             return validated;
         }
 
         public bool ValidateExamStudent()
         {
-         
             if (currentStudent == null)
             {
                 this.inter.Status = Resources.NoEvaluableEstudiante;
@@ -154,7 +149,6 @@ namespace Exam
                 return false;
             }
 
-        
             /*
             if (currentStudent.IsGUIDNull() || currentStudent.IsScoreNull())
             {
@@ -180,7 +174,7 @@ namespace Exam
                 }
                 else
                 {
-                     inter.Status = "Respuesta suministrada tiene la longitud necesaria";
+                    inter.Status = "Respuesta suministrada tiene la longitud necesaria";
                 }
 
                 ///////////////////////////////////////
@@ -203,10 +197,7 @@ namespace Exam
                     return false;
                 }
 
-
                 ///////////////////////////////////////
-
-
 
                 int dAP = 90; //DAY ACADEMIC PERIOD?? 90 DAYS = 3 MESES
                 int SLID = getStudentListID(dAP);
@@ -217,9 +208,7 @@ namespace Exam
                     return false;
                 }
 
-
                 ///////////////////////////////////////
-
 
                 IEnumerable<DB.StudentRow> diffExams = null;
 
@@ -237,7 +226,6 @@ namespace Exam
                     {
                         this.inter.Status = "Estudiante evaluado misma materia en menos de " + mLE.ToString() + " minutos";
                         return false;
-
                     }
                     //
                     IEnumerable<DB.StudentRow> olders = null;
@@ -277,9 +265,8 @@ namespace Exam
                 return false;
             }
 
-
             //YA ARREGLADO, BUSCA AL ESTUDIANTE DE LA LISTA QUE TENGA MENOS DE 90 DIAS GENERADO
-     
+
             try
             {
                 DB.StudentRow toAdd = this.inter.IdB.Student.NewStudentRow();
@@ -287,13 +274,11 @@ namespace Exam
                 this.inter.IdB.Student.AddStudentRow(toAdd);
                 currentStudent = toAdd; //IMPORTANTE DEVUELVE LA PAPA
 
-
                 this.inter.Status = Resources.ExamenAsociado;
-    
+
                 evaluateStudent();
 
                 this.inter.Status = "Estudiante evaluado";
-
             }
             catch (Exception ex)
             {
@@ -304,12 +289,10 @@ namespace Exam
             return true;
         }
 
-
         //////////////////////////////////////////////////////
         //////////////////////////////////////////////////////
         //////////////////////////////////////////////////////
         //////////////////////////////////////////////////////
-
 
         private bool compareAnswerLenght(int lenghtprovided)
         {
@@ -322,13 +305,13 @@ namespace Exam
             if (lenghtprovided == TrueAns.Length)
             {
                 inter.Status = Properties.Resources.Coincide;
-              //  inter.StatusHandler?.Invoke(null, EventArgs.Empty);
+                // inter.StatusHandler?.Invoke(null, EventArgs.Empty);
                 return true;
             }
             else
             {
                 inter.Status = Properties.Resources.NoCoincide;
-               // inter.StatusHandler?.Invoke(null, EventArgs.Empty);
+                // inter.StatusHandler?.Invoke(null, EventArgs.Empty);
             }
             return false;
         }
@@ -350,78 +333,72 @@ namespace Exam
 
         private void evaluateStudent()
         {
-           
+            string provided = currentStudent.LProvided;
 
-                string provided = currentStudent.LProvided;
+            string TrueAns = currentStudent.ExamsListRow.CLAnswer; //take the encripted answer
+            TrueAns = Rsx.Encryption.AESThenHMAC.SimpleDecryptWithPassword(TrueAns, inter.Password, 0); //decripta
+            Tools.StripAnswer(ref TrueAns);
 
-            
-                string TrueAns = currentStudent.ExamsListRow.CLAnswer; //take the encripted answer
-                TrueAns = Rsx.Encryption.AESThenHMAC.SimpleDecryptWithPassword(TrueAns, inter.Password, 0); //decripta
-                Tools.StripAnswer(ref TrueAns);
+            string[] split = currentStudent.ExamsListRow.LQuestion.Split(SEP2);
+            double factor = Convert.ToDouble(split[1]);
+            string[] weights = split[0].Split(SEP);
 
-                string[] split = currentStudent.ExamsListRow.LQuestion.Split(SEP2);
-                double factor = Convert.ToDouble(split[1]);
-                string[] weights = split[0].Split(SEP);
+            int[] ws = weights.Select(o => Convert.ToInt32(o)).ToArray();
 
-                int[] ws = weights.Select(o => Convert.ToInt32(o)).ToArray();
+            IList<int> errorArray = new List<int>();
 
-                IList<int> errorArray = new List<int>();
+            double puntos = 0;
+            int correct = 0;
+            int i = 0;
+            double puntosTotal = 0;
 
-                double puntos = 0;
-                int correct = 0;
-                int i = 0;
-                double puntosTotal = 0;
-
-                for (i = 0; i < provided.Length; i++)
+            for (i = 0; i < provided.Length; i++)
+            {
+                char c = provided[i];
+                char a = TrueAns[i];
+                double puntosQuestion = ws[i] * factor;
+                puntosTotal += puntosQuestion;
+                if (c == a)
                 {
-                    char c = provided[i];
-                    char a = TrueAns[i];
-                    double puntosQuestion = ws[i] * factor;
-                    puntosTotal += puntosQuestion;
-                    if (c == a)
-                    {
-                        puntos += puntosQuestion;
-                        correct++;
-                    }
-                    else if (c.Equals('0')) continue;
-                    else errorArray.Add(i + 1);
+                    puntos += puntosQuestion;
+                    correct++;
                 }
+                else if (c.Equals('0')) continue;
+                else errorArray.Add(i + 1);
+            }
 
-                string error = string.Empty;
-                currentStudent.Error = error;
+            string error = string.Empty;
+            currentStudent.Error = error;
 
-                if (errorArray.Count != 0)
+            if (errorArray.Count != 0)
+            {
+                foreach (int x in errorArray) error += x.ToString() + SEP.ToString();
+                if (error[error.Length - 1].Equals(SEP))
                 {
-                    foreach (int x in errorArray) error += x.ToString() + SEP.ToString();
-                    if (error[error.Length - 1].Equals(SEP))
-                    {
-                        currentStudent.Error = error.Substring(0, error.Length - 1);
-                    }
+                    currentStudent.Error = error.Substring(0, error.Length - 1);
                 }
+            }
 
-                currentStudent.Score = (double)Decimal.Round(Convert.ToDecimal(puntos), 1);
-                currentStudent.Obs = string.Empty; //nada aun
-                currentStudent.Correct = correct;
+            currentStudent.Score = (double)Decimal.Round(Convert.ToDecimal(puntos), 1);
+            currentStudent.Obs = string.Empty; //nada aun
+            currentStudent.Correct = correct;
 
-                currentStudent.DatePresented = DateTime.Now;
+            currentStudent.DatePresented = DateTime.Now;
 
-                //mejorar esto
-                //   currentStudent.ExamsListRow.Questions = currentStudent.ExamsListRow.GetExamsRows().Count();
-                // currentStudent.ExamsListRow.Points = Decimal.Round(Convert.ToDecimal(puntosTotal),3);
-                // this.picBox.Image = null;
+            //mejorar esto
+            //   currentStudent.ExamsListRow.Questions = currentStudent.ExamsListRow.GetExamsRows().Count();
+            // currentStudent.ExamsListRow.Points = Decimal.Round(Convert.ToDecimal(puntosTotal),3);
+            // this.picBox.Image = null;
 
-                DB.TAM.StudentTableAdapter.Update(this.inter.IdB.Student);
-        
+            DB.TAM.StudentTableAdapter.Update(this.inter.IdB.Student);
 
             this.currentStudent = null; // reset values
             this.currentExam = null; //reset asignments
-
-
         }
 
         private int getStudentListID(int dAP)
         {
-     //       DB.TAM.StuListTableAdapter.FillByStudentIDClass(inter.IdB.StuList, Studentid, clase);
+            // DB.TAM.StuListTableAdapter.FillByStudentIDClass(inter.IdB.StuList, Studentid, clase);
 
             DateTime ahora = DateTime.Now;
 
@@ -439,7 +416,6 @@ namespace Exam
             {
                 this.currentStudent = null;
                 this.currentExam = null;
-           
 
                 return 0; // no le des SLID
             }
@@ -456,7 +432,7 @@ namespace Exam
             {
                 this.currentExam = null; //desechalo
                 this.currentStudent = null;
-              //   this.inter.StatusHandler?.Invoke(null, EventArgs.Empty);
+                // this.inter.StatusHandler?.Invoke(null, EventArgs.Empty);
 
                 return true; //SALTE EL EXAMEN EXPIRO!!!
             }
@@ -482,7 +458,7 @@ namespace Exam
                 this.currentExam = null;
                 this.currentStudent = null;
                 //el estudiante YA HA SIDO ASOCIADO AL EXAMEN, tal vez ponerlo de primero
-             //    this.inter.StatusHandler?.Invoke(null, EventArgs.Empty);
+                //    this.inter.StatusHandler?.Invoke(null, EventArgs.Empty);
 
                 // deberia guardar una lista de estos intentos!!!!
                 return true; //SALTE
@@ -551,31 +527,28 @@ namespace Exam
         private void setStatusException(ref Exception ex)
         {
             inter.Status = ex.Message + "\t\t" + ex.StackTrace;
-           // inter.StatusHandler?.Invoke(null, EventArgs.Empty);
+            // inter.StatusHandler?.Invoke(null, EventArgs.Empty);
         }
 
         private bool validateAnswer(string provided)
         {
             bool ok = false;
 
-             
-                provided.ToUpper();
-                provided.Trim();
+            provided.ToUpper();
+            provided.Trim();
 
-            
-                if (string.IsNullOrWhiteSpace(provided)) return ok;
-                if (string.IsNullOrEmpty(provided)) return ok;
+            if (string.IsNullOrWhiteSpace(provided)) return ok;
+            if (string.IsNullOrEmpty(provided)) return ok;
 
-                Tools.StripAnswer(ref provided);
+            Tools.StripAnswer(ref provided);
 
-                ok = compareAnswerLenght(provided.Length);
-           
-                currentStudent.LProvided = string.Empty;
-                if (ok)
-                {
-                    currentStudent.LProvided = provided;
-                }
-    
+            ok = compareAnswerLenght(provided.Length);
+
+            currentStudent.LProvided = string.Empty;
+            if (ok)
+            {
+                currentStudent.LProvided = provided;
+            }
 
             return ok;
         }
@@ -585,7 +558,5 @@ namespace Exam
             inter = interf;
             //inter.
         }
-
-      
     }
 }

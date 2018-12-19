@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Exam
 {
@@ -21,6 +19,7 @@ namespace Exam
         {
             get { return "000015325971"; }
         }
+
         public string Path
         {
             get;
@@ -52,7 +51,6 @@ namespace Exam
             set;
         }
 
-    
         public Interface(string appPath)
         {
             DB set = new DB();

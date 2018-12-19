@@ -9,6 +9,7 @@ namespace Exam
         private DB set;
 
         public BindingSource Answers { get; private set; }
+        public BindingSource Topics { get; private set; }
 
         public DB.ExamsListRow CurrentExam
         {
@@ -41,6 +42,14 @@ namespace Exam
                 return (Student.Current as DataRowView)?.Row as DB.StudentRow;
             }
         }
+        public DB.TopicsRow CurrentTopic
+        {
+            get
+            {
+                return (Topics.Current as DataRowView)?.Row as DB.TopicsRow;
+            }
+        }
+
         public BindingSource Exam { get; private set; }
 
         public BindingSource ExamsList { get; private set; }
@@ -64,6 +73,7 @@ namespace Exam
             get;
             set;
         }
+
         private void Exam_CurrentChanged(object sender, EventArgs e)
         {
             if (Working) return;
@@ -79,14 +89,16 @@ namespace Exam
 
                 byte[] auxiliar = null;
 
-                if (sender.Equals(this.Questions))
+                if (sender.Equals(this.Topics))
+                {
+                    DB.TopicsRow r = row as DB.TopicsRow;
+                    DB.QuestionsDataTable dt = set.Questions;
+                    Answers.Filter = dt.TopicIDColumn.ColumnName + " = " + r.TopicID;
+                }
+                 else   if (sender.Equals(this.Questions))
                 {
                     DB.QuestionsRow r = row as DB.QuestionsRow;
                     DB.AnswersDataTable dt = set.Answers;
-
-                 //   dt.Clear();
-                  //  dt.AcceptChanges();
-
                     Answers.Filter = dt.QIDColumn.ColumnName + " = " + r.QID;
                 }
                 else if (sender.Equals(this.Exam))
@@ -123,10 +135,6 @@ namespace Exam
                 {
                     DB.ExamsListRow r = row as DB.ExamsListRow;
                     DB.ExamsDataTable dt = set.Exams;
-
-                 //   dt.Clear();
-               //     dt.AcceptChanges();
-
                     Exam.Filter = dt.EIDColumn.ColumnName + " = " + r.EID;
 
                     DB.TAM.ExamsTableAdapter.FillByEID(dt, r.EID);
@@ -152,9 +160,6 @@ namespace Exam
                     DB.PreferencesRow r = row as DB.PreferencesRow;
                     DB.ExamsListDataTable dt = set.ExamsList;
 
-                 //   dt.Clear();
-                   // dt.AcceptChanges();
-
                     ExamsList.Filter = dt.PIDColumn.ColumnName + " = " + r.PID;
 
                     DB.TAM.ExamsListTableAdapter.FillByPID(dt, r.PID);
@@ -175,12 +180,11 @@ namespace Exam
             }
             catch (SystemException ex)
             {
-
             }
         }
 
-        string asc = " asc";
-        string desc = " desc";
+        private string asc = " asc";
+        private string desc = " desc";
 
         public BS(ref DB dataset)
         {
@@ -200,6 +204,9 @@ namespace Exam
             Class = new BindingSource(set, set.Class.TableName);
             AYear = new BindingSource(set, set.AYear.TableName);
 
+            Topics = new BindingSource(set, set.Topics.TableName);
+
+
             Exam.CurrentChanged += Exam_CurrentChanged;
             ExamsList.CurrentChanged += Exam_CurrentChanged;
             Student.CurrentChanged += Exam_CurrentChanged;
@@ -212,9 +219,9 @@ namespace Exam
             Class.CurrentChanged += Exam_CurrentChanged;
             AYear.CurrentChanged += Exam_CurrentChanged;
 
+            Topics.CurrentChanged += Exam_CurrentChanged;
 
 
-         
             // preferences is done=FALSE as we want to create
             Preferences.Filter = set.Preferences.DoneColumn.ColumnName + " = false";
             // log is preferences executed (exams generated)
@@ -223,15 +230,13 @@ namespace Exam
 
             this.Class.Sort = set.Class.ClassColumn.ColumnName + desc;
             this.AYear.Sort = set.AYear.AYearIDColumn.ColumnName + asc;
-
+            this.Topics.Sort = set.Topics.TopicColumn.ColumnName + asc;
 
             this.ExamsList.Sort = set.ExamsList.EIDColumn.ColumnName + desc;
             this.Exam.Sort = set.Exams.IDColumn.ColumnName + asc;
             this.Answers.Sort = set.Answers.CorrectColumn.ColumnName + asc;
             this.Questions.Sort = set.Questions.QIDColumn.ColumnName + asc;
             this.Order.Sort = set.Order.IDColumn.ColumnName + asc;
-
-
         }
     }
 }

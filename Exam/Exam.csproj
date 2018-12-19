@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AB996913-37AA-4992-B5FD-2DC069B05C61}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Exam</RootNamespace>
     <AssemblyName>Exam</AssemblyName>
@@ -68,6 +68,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="QRCoder">
       <HintPath>.\QRCoder.dll</HintPath>
@@ -86,6 +89,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ctrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl.Designer.cs">
+      <DependentUpon>Ctrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucGenerator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucGenerator.Designer.cs">
+      <DependentUpon>ucGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ValidFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ValidFrm.Designer.cs">
+      <DependentUpon>ValidFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interface\BS.cs" />
     <Compile Include="DB.cs">
       <DependentUpon>DB.xsd</DependentUpon>
@@ -105,8 +126,16 @@
     <Compile Include="Interface\Interface.cs" />
     <Compile Include="Interface\Generator.cs" />
     <Compile Include="Interface\Validator.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Ctrl.resx">
+      <DependentUpon>Ctrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucGenerator.resx">
+      <DependentUpon>ucGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ValidFrm.resx">
+      <DependentUpon>ValidFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExamFrm.resx">
       <DependentUpon>ExamFrm.cs</DependentUpon>
     </EmbeddedResource>

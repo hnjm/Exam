@@ -116,12 +116,7 @@ namespace Exam
             FillPreferences();
 
             this.inter.IBS.Working = false;
-
-
-           
         }
-
-
 
         /// <summary>
         /// gets the questions that satisfy a given weight, based on the ExamRow.MID tag
@@ -422,12 +417,14 @@ namespace Exam
         private static string ID_FILE;
         private static string JPG_EXT = ".jpg";
         private static string model = "Model-";
+
         //FOR WORD DOCUMENT GENERATION INTEROP
         private static object nullObj = System.Reflection.Missing.Value;
 
         private static string PDF_EXT = ".pdf";
         private static int qrSise = 2;
         private static object roObj = true;
+
         // private const string slash = "\\";
         private static char SEP = '-';
 
@@ -443,11 +440,10 @@ namespace Exam
     {
         public void FillAYear()
         {
-            //  this.inter.IdB.StuList.Clear();
+            // this.inter.IdB.StuList.Clear();
 
             DB.TAM.AYearTableAdapter.Fill(this.inter.IdB.AYear);
 
-         
             // this.inter.IdB.Student.Clear();
 
             // DB.TAM.StudentTableAdapter.Fill(this.inter.IdB.Student);
@@ -458,32 +454,27 @@ namespace Exam
 
         private string logoFile;
 
-   
         private string templateFile;
 
-     
         public void MakeList(string pathway, string classe, int ayearID)
         {
-          string[] lines = System.IO.File.ReadAllLines(pathway);
+            string[] lines = System.IO.File.ReadAllLines(pathway);
 
             foreach (var item in lines)
             {
-            StuListRow s =    inter.IdB.StuList.NewStuListRow();
+                StuListRow s = inter.IdB.StuList.NewStuListRow();
                 string[] members = item.Split(',');
                 s.StudentID = members[0];
                 s.LastNames = members[1];
                 s.FirstNames = members[2];
                 s.Class = classe;
-             
+
                 s.Date = DateTime.Now;
                 s.Year = s.Date.Year;
                 s.AYearID = ayearID;
                 inter.IdB.StuList.AddStuListRow(s);
-
-
             }
             TAM.StuListTableAdapter.Update(inter.IdB.StuList);
-
         }
 
         public void CleanOrphans()
@@ -556,21 +547,18 @@ namespace Exam
             }
         }
 
-        public void DoExams(int ayearID)
+        public void DoExams()
         {
-            //  DataRow row = (inter.IBS.Preferences.Current as DataRowView).Row;
+            // DataRow row = (inter.IBS.Preferences.Current as DataRowView).Row;
 
-
-         //   DB.TAM.PreferencesTableAdapter.Update(inter.IdB.Preferences);
-
-         
+            // DB.TAM.PreferencesTableAdapter.Update(inter.IdB.Preferences);
 
             PreferencesRow p = inter.IBS.CurrentPreference;
             p.EndEdit();
 
             // p.Class = materiaBox.Text;
             p.DateTime = DateTime.Now;
-            p.AYearID = ayearID;
+            // p.AYearID = ayearID;
             p.Year = p.DateTime.Year;
 
             DB.TAM.PreferencesTableAdapter.Update(p);
@@ -583,24 +571,19 @@ namespace Exam
 
             DB.TAM.PreferencesTableAdapter.Update(p);
 
-
             inter.IBS.Working = false;
 
             inter.IBS.LogPref.MoveFirst();
 
-            //    inter.
+            // inter.
 
             inter.IBS.Working = true;
-
 
             inter.Status = "Empezando...";
 
             FillClassDataBase(p.Class);
 
-       //     inter.IBS.LogPref.MoveFirst(); //select item to clone
-        //    Application.DoEvents();
-
-         
+            // inter.IBS.LogPref.MoveFirst(); //select item to clone Application.DoEvents();
 
             inter.ProgressHandler?.Invoke(p.Models, EventArgs.Empty);
 
@@ -617,60 +600,51 @@ namespace Exam
 
                 inter.ProgressHandler?.Invoke(0, EventArgs.Empty);
 
-             //   Application.DoEvents();
+                // Application.DoEvents();
 
                 ExamsRow[] arr = ls.GetExamsRows();
                 double sumPoint = arr.Sum(o => o.QuestionsRow.Weight);
                 double factor = Convert.ToDouble(p.Points);
-                factor /=(sumPoint);
+                factor /= (sumPoint);
                 p.Factor = factor;
                 arr = null;
 
-             //   Application.DoEvents();
+                // Application.DoEvents();
 
                 IList<string[]> questionAnswer;
-           
+
                 ////ENCRIPTAMIENTOOOOOOO
                 inter.Status = "Procesando...";
 
                 doOneEncriptExam(ref p, ref ls, out questionAnswer);
 
-            
-
                 inter.ProgressHandler?.Invoke(0, EventArgs.Empty);
 
-             
                 inter.Status = Resources.Creando + "el examen " + ls.GUID;
 
                 doOneDocExam(ref p, ref ls, ref questionAnswer);
 
                 inter.Status = "Examen generado";
 
-             //   Application.DoEvents();
+                // Application.DoEvents();
                 inter.ProgressHandler?.Invoke(0, EventArgs.Empty);
 
-               // Application.DoEvents();
+                // Application.DoEvents();
             }
 
             MakeTableBytes(ref p, ExasmPath);
 
             inter.Status = p.Models + " Modelos generados";
-            //     Application.DoEvents();
+            // Application.DoEvents();
 
-        
-        //    pClone.Done = false;
+            // pClone.Done = false;
 
             DB.TAM.PreferencesTableAdapter.Update(p);
 
             inter.IdB.Order.Clear();
             inter.IdB.Exams.Clear();
 
-       
-
             inter.IBS.Working = false;
-
-     
-
         }
 
         public void FillClassDataBase(string clase)
@@ -689,30 +663,29 @@ namespace Exam
             fillQA();
         }
 
-
         public void FillStudents(string clase, string year, string Ayear)
         {
-       
-            //  this.inter.IdB.StuList.Clear();
+            // this.inter.IdB.StuList.Clear();
             int nyear;
             int.TryParse(year, out nyear);
 
             int? ayearID = this.inter.IdB.FindAYearID(Ayear);
 
-            DB.TAM.StuListTableAdapter.FillByClassAYear(this.inter.IdB.StuList,clase, (int)ayearID,nyear);
+            DB.TAM.StuListTableAdapter.FillByClassAYear(this.inter.IdB.StuList, clase, (int)ayearID, nyear);
 
-          //  this.inter.IdB.Student.Clear();
+            // this.inter.IdB.Student.Clear();
 
-            DB.TAM.StudentTableAdapter.FillByClass(this.inter.IdB.Student,clase);
-  
+            DB.TAM.StudentTableAdapter.FillByClass(this.inter.IdB.Student, clase);
         }
+
         public void FillClasses()
         {
             DB.TAM.ClassTableAdapter.Fill(this.inter.IdB.Class);
         }
+
         public void FillPreferences()
         {
-         //   this.inter.IdB.Preferences.Clear();
+            // this.inter.IdB.Preferences.Clear();
             DB.TAM.PreferencesTableAdapter.Fill(this.inter.IdB.Preferences);
             this.inter.IdB.Preferences.AcceptChanges();
         }
@@ -798,29 +771,26 @@ namespace Exam
 
             // stu.EID = ls.EID;
         }
+
         public void OpenFile()
         {
             try
             {
+                string destFile = ExasmPath + model + inter.IBS.CurrentExam.GUID + PDF_EXT; //ok
 
-          
-            string destFile = ExasmPath + model + inter.IBS.CurrentExam.GUID + PDF_EXT; //ok
+                if (!inter.IBS.CurrentExam.IsExamFileNull())
+                {
+                    byte[] arr = inter.IBS.CurrentExam.ExamFile;
+                    IO.WriteFileBytes(ref arr, destFile);
+                }
 
-            if (!inter.IBS.CurrentExam.IsExamFileNull())
-            {
-                byte[] arr = inter.IBS.CurrentExam.ExamFile;
-                IO.WriteFileBytes(ref arr, destFile);
-            }
-
-            IO.Process(new System.Diagnostics.Process(), ExasmPath, "explorer.exe", destFile, true, false, 10000);
+                IO.Process(new System.Diagnostics.Process(), ExasmPath, "explorer.exe", destFile, true, false, 10000);
             }
             catch (Exception ex)
             {
                 inter.Status = "El Examen ya está abierto";
                 // StatusHandler?.Invoke(ex, EventArgs.Empty);
-           
-        }
-
+            }
         }
 
         private void clearQA()
@@ -841,7 +811,7 @@ namespace Exam
             img.Save(jpgQRCodeFile);
 
             string destFile = filepathAux + WORD_EXT;
-      
+
             File.Copy(templateFile, destFile);
 
             W.Application w = new W.Application();
@@ -857,18 +827,16 @@ namespace Exam
 
             MakeExamFileBody(ref questionAnswer, ref doc);
 
-
             Application.DoEvents();
             //save word
             doc.Save();
 
-            //    string filepathAux = ExasmPath + model + ls.GUID;
+            // string filepathAux = ExasmPath + model + ls.GUID;
             string filePDF = filepathAux + PDF_EXT;
             string filejpg = filepathAux + JPG_EXT;
 
             inter.Status = Resources.ExamenCreado;
 
-       
             ///MAKE PDF
             Tools.MakePDF(ref doc);
 
@@ -887,13 +855,10 @@ namespace Exam
             ls.ExamFile = rtf; //salva una copia del archivo PDF en el servidor SQL
             DB.TAM.ExamsListTableAdapter.Update(ls);
             File.Delete(filePDF);
-
-       
         }
 
         private void doOneEncriptExam(ref PreferencesRow p, ref ExamsListRow ls, out IList<string[]> questionAnswer)
         {
-           
             IEnumerable<DB.ExamsRow> join = ls.GetExamsRows();
             string[] ClaveWQID = null;
 
@@ -908,7 +873,6 @@ namespace Exam
             //SAVE COPY OF TABLE in EXAMLIST
             MakeTableBytes(ref ls, ExasmPath);
             DB.TAM.ExamsListTableAdapter.Update(inter.IdB.ExamsList);
-          
         }
 
         /// <summary>
@@ -979,7 +943,7 @@ namespace Exam
             ls.GUID = g.ToString().Replace("-", null);//.Split('-')[4];
             ls.Time = DateTime.Now;
             ls.Class = p.Class;
-        
+
             // Image img = Tools.CreateQRCode(ls.GUID, qrSizeDB); ls.QRCode = Tools.imageToByteArray(img);
 
             DB.TAM.ExamsListTableAdapter.Update(inter.IdB.ExamsList);
@@ -998,7 +962,7 @@ namespace Exam
             DB.TAMQA.AnswersTableAdapter.Fill(inter.IdB.Answers);
             DB.TAMQA.QuestionsTableAdapter.Fill(inter.IdB.Questions);
         }
-    
+
         private void updateQA()
         {
             DB.TAMQA.QuestionsTableAdapter.Update(inter.IdB.Questions);
