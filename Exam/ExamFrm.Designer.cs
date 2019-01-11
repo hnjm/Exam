@@ -28,132 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tab = new System.Windows.Forms.TabControl();
             this.prefTab = new System.Windows.Forms.TabPage();
-            this.prefTLP = new System.Windows.Forms.TableLayoutPanel();
-            this.logDGV = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn41 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn42 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn43 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn44 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn46 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn47 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn48 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn49 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn50 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn45 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn51 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuestionsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.logBS = new System.Windows.Forms.BindingSource(this.components);
-            this.dB = new Exam.DB();
-            this.examsDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.examsBS = new System.Windows.Forms.BindingSource(this.components);
-            this.preferencesDGV = new System.Windows.Forms.DataGridView();
-            this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modelsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.d1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.d2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.d3DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.d4DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.d5DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Points = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.showPoints = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.showAnswer = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Factor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Questions = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.preferencesBS = new System.Windows.Forms.BindingSource(this.components);
-            this.examsListDGV = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QIDString = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CLAnswer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn35 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.examsListBS = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStrip6 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.titleBox = new System.Windows.Forms.ToolStripTextBox();
+            this.ucGenerator1 = new Exam.ucGenerator();
             this.dbTab = new System.Windows.Forms.TabPage();
-            this.dbTLP = new System.Windows.Forms.TableLayoutPanel();
-            this.questionsDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FigureFile = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.questionsBS = new System.Windows.Forms.BindingSource(this.components);
-            this.answersDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.answersBS = new System.Windows.Forms.BindingSource(this.components);
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.richQuesBox = new System.Windows.Forms.RichTextBox();
-            this.richAnsBox = new System.Windows.Forms.RichTextBox();
-            this.otherTab = new System.Windows.Forms.TabPage();
-            this.otherTLP = new System.Windows.Forms.TableLayoutPanel();
-            this.orderDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderBS = new System.Windows.Forms.BindingSource(this.components);
+            this.ucDataBase1 = new Exam.ucDataBase();
+            this.EvalTab = new System.Windows.Forms.TabPage();
+            this.ucValidator1 = new Exam.ucValidator();
             this.TLP = new System.Windows.Forms.TableLayoutPanel();
             this.ctrl1 = new Exam.Ctrl();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.ExamTab = new System.Windows.Forms.TabPage();
+            this.ucExamGUI = new Exam.ucDataBase();
             this.tab.SuspendLayout();
             this.prefTab.SuspendLayout();
-            this.prefTLP.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logDGV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.logBS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.examsDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.examsBS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.preferencesDGV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.preferencesBS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.examsListDGV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.examsListBS)).BeginInit();
-            this.toolStrip6.SuspendLayout();
             this.dbTab.SuspendLayout();
-            this.dbTLP.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.questionsDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.questionsBS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.answersDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.answersBS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.otherTab.SuspendLayout();
-            this.otherTLP.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBS)).BeginInit();
+            this.EvalTab.SuspendLayout();
             this.TLP.SuspendLayout();
+            this.ExamTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab
@@ -162,7 +56,8 @@
             this.TLP.SetColumnSpan(this.tab, 2);
             this.tab.Controls.Add(this.prefTab);
             this.tab.Controls.Add(this.dbTab);
-            this.tab.Controls.Add(this.otherTab);
+            this.tab.Controls.Add(this.EvalTab);
+            this.tab.Controls.Add(this.ExamTab);
             this.tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tab.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tab.Location = new System.Drawing.Point(3, 89);
@@ -176,7 +71,7 @@
             // prefTab
             // 
             this.prefTab.BackColor = System.Drawing.Color.Gray;
-            this.prefTab.Controls.Add(this.prefTLP);
+            this.prefTab.Controls.Add(this.ucGenerator1);
             this.prefTab.Location = new System.Drawing.Point(4, 33);
             this.prefTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.prefTab.Name = "prefTab";
@@ -185,624 +80,21 @@
             this.prefTab.TabIndex = 2;
             this.prefTab.Text = "Generador";
             // 
-            // prefTLP
-            // 
-            this.prefTLP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.prefTLP.ColumnCount = 2;
-            this.prefTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.62637F));
-            this.prefTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.37363F));
-            this.prefTLP.Controls.Add(this.logDGV, 0, 2);
-            this.prefTLP.Controls.Add(this.examsDataGridView, 1, 3);
-            this.prefTLP.Controls.Add(this.preferencesDGV, 0, 1);
-            this.prefTLP.Controls.Add(this.examsListDGV, 0, 3);
-            this.prefTLP.Controls.Add(this.toolStrip6, 0, 0);
-            this.prefTLP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.prefTLP.Location = new System.Drawing.Point(3, 4);
-            this.prefTLP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.prefTLP.Name = "prefTLP";
-            this.prefTLP.RowCount = 4;
-            this.prefTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.prefTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.14894F));
-            this.prefTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.00709F));
-            this.prefTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.66667F));
-            this.prefTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.prefTLP.Size = new System.Drawing.Size(1274, 602);
-            this.prefTLP.TabIndex = 0;
-            // 
-            // logDGV
-            // 
-            this.logDGV.AllowUserToAddRows = false;
-            this.logDGV.AllowUserToDeleteRows = false;
-            this.logDGV.AllowUserToOrderColumns = true;
-            this.logDGV.AutoGenerateColumns = false;
-            this.logDGV.BackgroundColor = System.Drawing.Color.Honeydew;
-            this.logDGV.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.logDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.logDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.logDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn41,
-            this.dataGridViewTextBoxColumn42,
-            this.dataGridViewTextBoxColumn43,
-            this.dataGridViewTextBoxColumn44,
-            this.dataGridViewTextBoxColumn46,
-            this.dataGridViewTextBoxColumn47,
-            this.dataGridViewTextBoxColumn48,
-            this.dataGridViewTextBoxColumn49,
-            this.dataGridViewTextBoxColumn50,
-            this.dataGridViewTextBoxColumn45,
-            this.dataGridViewTextBoxColumn51,
-            this.QuestionsColumn,
-            this.Year,
-            this.AYear});
-            this.prefTLP.SetColumnSpan(this.logDGV, 2);
-            this.logDGV.DataSource = this.logBS;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.logDGV.DefaultCellStyle = dataGridViewCellStyle5;
-            this.logDGV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logDGV.EnableHeadersVisualStyles = false;
-            this.logDGV.Location = new System.Drawing.Point(3, 150);
-            this.logDGV.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.logDGV.MultiSelect = false;
-            this.logDGV.Name = "logDGV";
-            this.logDGV.ReadOnly = true;
-            this.logDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.logDGV.Size = new System.Drawing.Size(1268, 212);
-            this.logDGV.TabIndex = 5;
-            // 
-            // dataGridViewTextBoxColumn41
-            // 
-            this.dataGridViewTextBoxColumn41.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn41.DataPropertyName = "PID";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn41.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTextBoxColumn41.HeaderText = "PID";
-            this.dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
-            this.dataGridViewTextBoxColumn41.ReadOnly = true;
-            this.dataGridViewTextBoxColumn41.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn42
-            // 
-            this.dataGridViewTextBoxColumn42.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn42.DataPropertyName = "DateTime";
-            this.dataGridViewTextBoxColumn42.HeaderText = "DateTime";
-            this.dataGridViewTextBoxColumn42.Name = "dataGridViewTextBoxColumn42";
-            this.dataGridViewTextBoxColumn42.ReadOnly = true;
-            this.dataGridViewTextBoxColumn42.Width = 105;
-            // 
-            // dataGridViewTextBoxColumn43
-            // 
-            this.dataGridViewTextBoxColumn43.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn43.DataPropertyName = "Class";
-            this.dataGridViewTextBoxColumn43.HeaderText = "Class";
-            this.dataGridViewTextBoxColumn43.Name = "dataGridViewTextBoxColumn43";
-            this.dataGridViewTextBoxColumn43.ReadOnly = true;
-            this.dataGridViewTextBoxColumn43.Width = 71;
-            // 
-            // dataGridViewTextBoxColumn44
-            // 
-            this.dataGridViewTextBoxColumn44.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn44.DataPropertyName = "Title";
-            this.dataGridViewTextBoxColumn44.HeaderText = "Título";
-            this.dataGridViewTextBoxColumn44.Name = "dataGridViewTextBoxColumn44";
-            this.dataGridViewTextBoxColumn44.ReadOnly = true;
-            this.dataGridViewTextBoxColumn44.Width = 77;
-            // 
-            // dataGridViewTextBoxColumn46
-            // 
-            this.dataGridViewTextBoxColumn46.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn46.DataPropertyName = "D1";
-            this.dataGridViewTextBoxColumn46.HeaderText = "D1";
-            this.dataGridViewTextBoxColumn46.Name = "dataGridViewTextBoxColumn46";
-            this.dataGridViewTextBoxColumn46.ReadOnly = true;
-            this.dataGridViewTextBoxColumn46.ToolTipText = "# de preguntas de Dificultad 1 (Muy Fácil)";
-            this.dataGridViewTextBoxColumn46.Width = 52;
-            // 
-            // dataGridViewTextBoxColumn47
-            // 
-            this.dataGridViewTextBoxColumn47.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn47.DataPropertyName = "D2";
-            this.dataGridViewTextBoxColumn47.HeaderText = "D2";
-            this.dataGridViewTextBoxColumn47.Name = "dataGridViewTextBoxColumn47";
-            this.dataGridViewTextBoxColumn47.ReadOnly = true;
-            this.dataGridViewTextBoxColumn47.ToolTipText = "# de preguntas de Dificultad 2 (Fácil)";
-            this.dataGridViewTextBoxColumn47.Width = 55;
-            // 
-            // dataGridViewTextBoxColumn48
-            // 
-            this.dataGridViewTextBoxColumn48.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn48.DataPropertyName = "D3";
-            this.dataGridViewTextBoxColumn48.HeaderText = "D3";
-            this.dataGridViewTextBoxColumn48.Name = "dataGridViewTextBoxColumn48";
-            this.dataGridViewTextBoxColumn48.ReadOnly = true;
-            this.dataGridViewTextBoxColumn48.ToolTipText = "# de preguntas de Dificultad 3 (Media)";
-            this.dataGridViewTextBoxColumn48.Width = 55;
-            // 
-            // dataGridViewTextBoxColumn49
-            // 
-            this.dataGridViewTextBoxColumn49.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn49.DataPropertyName = "D4";
-            this.dataGridViewTextBoxColumn49.HeaderText = "D4";
-            this.dataGridViewTextBoxColumn49.Name = "dataGridViewTextBoxColumn49";
-            this.dataGridViewTextBoxColumn49.ReadOnly = true;
-            this.dataGridViewTextBoxColumn49.ToolTipText = "# de preguntas de Dificultad 4 (Difícil)";
-            this.dataGridViewTextBoxColumn49.Width = 55;
-            // 
-            // dataGridViewTextBoxColumn50
-            // 
-            this.dataGridViewTextBoxColumn50.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn50.DataPropertyName = "D5";
-            this.dataGridViewTextBoxColumn50.HeaderText = "D5";
-            this.dataGridViewTextBoxColumn50.Name = "dataGridViewTextBoxColumn50";
-            this.dataGridViewTextBoxColumn50.ReadOnly = true;
-            this.dataGridViewTextBoxColumn50.ToolTipText = "# de preguntas de Dificultad 5 (Muy Difícil)";
-            this.dataGridViewTextBoxColumn50.Width = 55;
-            // 
-            // dataGridViewTextBoxColumn45
-            // 
-            this.dataGridViewTextBoxColumn45.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn45.DataPropertyName = "Models";
-            this.dataGridViewTextBoxColumn45.HeaderText = "Modelos";
-            this.dataGridViewTextBoxColumn45.Name = "dataGridViewTextBoxColumn45";
-            this.dataGridViewTextBoxColumn45.ReadOnly = true;
-            this.dataGridViewTextBoxColumn45.ToolTipText = "# de Exámenes a generar";
-            // 
-            // dataGridViewTextBoxColumn51
-            // 
-            this.dataGridViewTextBoxColumn51.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn51.DataPropertyName = "Points";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGridViewTextBoxColumn51.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewTextBoxColumn51.HeaderText = "Puntos";
-            this.dataGridViewTextBoxColumn51.Name = "dataGridViewTextBoxColumn51";
-            this.dataGridViewTextBoxColumn51.ReadOnly = true;
-            this.dataGridViewTextBoxColumn51.Width = 85;
-            // 
-            // QuestionsColumn
-            // 
-            this.QuestionsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.QuestionsColumn.DataPropertyName = "Questions";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.QuestionsColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.QuestionsColumn.HeaderText = "Preguntas";
-            this.QuestionsColumn.Name = "QuestionsColumn";
-            this.QuestionsColumn.ReadOnly = true;
-            this.QuestionsColumn.Width = 108;
-            // 
-            // Year
-            // 
-            this.Year.DataPropertyName = "Year";
-            this.Year.HeaderText = "Año";
-            this.Year.Name = "Year";
-            this.Year.ReadOnly = true;
-            // 
-            // AYear
-            // 
-            this.AYear.DataPropertyName = "AYear";
-            this.AYear.HeaderText = "Periodo";
-            this.AYear.Name = "AYear";
-            this.AYear.ReadOnly = true;
-            // 
-            // logBS
-            // 
-            this.logBS.DataMember = "Preferences";
-            this.logBS.DataSource = this.dB;
-            // 
-            // dB
-            // 
-            this.dB.DataSetName = "DB";
-            this.dB.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // examsDataGridView
-            // 
-            this.examsDataGridView.AllowUserToAddRows = false;
-            this.examsDataGridView.AllowUserToDeleteRows = false;
-            this.examsDataGridView.AllowUserToOrderColumns = true;
-            this.examsDataGridView.AutoGenerateColumns = false;
-            this.examsDataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.examsDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.examsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.examsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.examsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn24,
-            this.dataGridViewTextBoxColumn25,
-            this.dataGridViewTextBoxColumn23,
-            this.dataGridViewTextBoxColumn21});
-            this.examsDataGridView.DataSource = this.examsBS;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.examsDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
-            this.examsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.examsDataGridView.EnableHeadersVisualStyles = false;
-            this.examsDataGridView.Location = new System.Drawing.Point(940, 370);
-            this.examsDataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.examsDataGridView.MultiSelect = false;
-            this.examsDataGridView.Name = "examsDataGridView";
-            this.examsDataGridView.ReadOnly = true;
-            this.examsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.examsDataGridView.Size = new System.Drawing.Size(331, 228);
-            this.examsDataGridView.TabIndex = 1;
-            // 
-            // dataGridViewTextBoxColumn24
-            // 
-            this.dataGridViewTextBoxColumn24.DataPropertyName = "QID";
-            this.dataGridViewTextBoxColumn24.HeaderText = "QID";
-            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
-            this.dataGridViewTextBoxColumn24.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn25
-            // 
-            this.dataGridViewTextBoxColumn25.DataPropertyName = "AIDString";
-            this.dataGridViewTextBoxColumn25.HeaderText = "AIDString";
-            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
-            this.dataGridViewTextBoxColumn25.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn23
-            // 
-            this.dataGridViewTextBoxColumn23.DataPropertyName = "MID";
-            this.dataGridViewTextBoxColumn23.HeaderText = "MID";
-            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
-            this.dataGridViewTextBoxColumn23.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn21
-            // 
-            this.dataGridViewTextBoxColumn21.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn21.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
-            this.dataGridViewTextBoxColumn21.ReadOnly = true;
-            // 
-            // examsBS
-            // 
-            this.examsBS.DataMember = "Exams";
-            this.examsBS.DataSource = this.dB;
-            // 
-            // preferencesDGV
-            // 
-            this.preferencesDGV.AllowUserToAddRows = false;
-            this.preferencesDGV.AllowUserToDeleteRows = false;
-            this.preferencesDGV.AllowUserToOrderColumns = true;
-            this.preferencesDGV.AutoGenerateColumns = false;
-            this.preferencesDGV.BackgroundColor = System.Drawing.Color.LemonChiffon;
-            this.preferencesDGV.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.preferencesDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.preferencesDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.preferencesDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Class,
-            this.Title,
-            this.modelsDataGridViewTextBoxColumn,
-            this.d1DataGridViewTextBoxColumn,
-            this.d2DataGridViewTextBoxColumn,
-            this.d3DataGridViewTextBoxColumn,
-            this.d4DataGridViewTextBoxColumn,
-            this.d5DataGridViewTextBoxColumn,
-            this.Points,
-            this.showPoints,
-            this.showAnswer,
-            this.Factor,
-            this.Questions});
-            this.prefTLP.SetColumnSpan(this.preferencesDGV, 2);
-            this.preferencesDGV.DataSource = this.preferencesBS;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.preferencesDGV.DefaultCellStyle = dataGridViewCellStyle12;
-            this.preferencesDGV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.preferencesDGV.EnableHeadersVisualStyles = false;
-            this.preferencesDGV.Location = new System.Drawing.Point(3, 42);
-            this.preferencesDGV.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.preferencesDGV.Name = "preferencesDGV";
-            this.preferencesDGV.Size = new System.Drawing.Size(1268, 100);
-            this.preferencesDGV.TabIndex = 0;
-            // 
-            // Class
-            // 
-            this.Class.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Class.DataPropertyName = "Class";
-            this.Class.HeaderText = "Class";
-            this.Class.Name = "Class";
-            this.Class.Visible = false;
-            // 
-            // Title
-            // 
-            this.Title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Title.DataPropertyName = "Title";
-            this.Title.HeaderText = "Título";
-            this.Title.Name = "Title";
-            this.Title.Visible = false;
-            // 
-            // modelsDataGridViewTextBoxColumn
-            // 
-            this.modelsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.modelsDataGridViewTextBoxColumn.DataPropertyName = "Models";
-            this.modelsDataGridViewTextBoxColumn.HeaderText = "Modelos";
-            this.modelsDataGridViewTextBoxColumn.Name = "modelsDataGridViewTextBoxColumn";
-            this.modelsDataGridViewTextBoxColumn.ToolTipText = "# de Exámenes a generar";
-            // 
-            // d1DataGridViewTextBoxColumn
-            // 
-            this.d1DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.d1DataGridViewTextBoxColumn.DataPropertyName = "D1";
-            this.d1DataGridViewTextBoxColumn.HeaderText = "D1";
-            this.d1DataGridViewTextBoxColumn.Name = "d1DataGridViewTextBoxColumn";
-            this.d1DataGridViewTextBoxColumn.ToolTipText = "# de preguntas de Dificultad 1 (Muy Fácil)";
-            this.d1DataGridViewTextBoxColumn.Width = 52;
-            // 
-            // d2DataGridViewTextBoxColumn
-            // 
-            this.d2DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.d2DataGridViewTextBoxColumn.DataPropertyName = "D2";
-            this.d2DataGridViewTextBoxColumn.HeaderText = "D2";
-            this.d2DataGridViewTextBoxColumn.Name = "d2DataGridViewTextBoxColumn";
-            this.d2DataGridViewTextBoxColumn.ToolTipText = "# de preguntas de Dificultad 2 (Fácil)";
-            this.d2DataGridViewTextBoxColumn.Width = 55;
-            // 
-            // d3DataGridViewTextBoxColumn
-            // 
-            this.d3DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.d3DataGridViewTextBoxColumn.DataPropertyName = "D3";
-            this.d3DataGridViewTextBoxColumn.HeaderText = "D3";
-            this.d3DataGridViewTextBoxColumn.Name = "d3DataGridViewTextBoxColumn";
-            this.d3DataGridViewTextBoxColumn.ToolTipText = "# de preguntas de Dificultad 3 (Media)";
-            this.d3DataGridViewTextBoxColumn.Width = 55;
-            // 
-            // d4DataGridViewTextBoxColumn
-            // 
-            this.d4DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.d4DataGridViewTextBoxColumn.DataPropertyName = "D4";
-            this.d4DataGridViewTextBoxColumn.HeaderText = "D4";
-            this.d4DataGridViewTextBoxColumn.Name = "d4DataGridViewTextBoxColumn";
-            this.d4DataGridViewTextBoxColumn.ToolTipText = "# de preguntas de Dificultad 4 (Difícil)";
-            this.d4DataGridViewTextBoxColumn.Width = 55;
-            // 
-            // d5DataGridViewTextBoxColumn
-            // 
-            this.d5DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.d5DataGridViewTextBoxColumn.DataPropertyName = "D5";
-            this.d5DataGridViewTextBoxColumn.HeaderText = "D5";
-            this.d5DataGridViewTextBoxColumn.Name = "d5DataGridViewTextBoxColumn";
-            this.d5DataGridViewTextBoxColumn.ToolTipText = "# de preguntas de Dificultad 5 (Muy Difícil)";
-            this.d5DataGridViewTextBoxColumn.Width = 55;
-            // 
-            // Points
-            // 
-            this.Points.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Points.DataPropertyName = "Points";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.Points.DefaultCellStyle = dataGridViewCellStyle9;
-            this.Points.HeaderText = "Puntos";
-            this.Points.Name = "Points";
-            this.Points.Width = 85;
-            // 
-            // showPoints
-            // 
-            this.showPoints.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.showPoints.DataPropertyName = "showPoints";
-            this.showPoints.HeaderText = "Mostrar puntos";
-            this.showPoints.Name = "showPoints";
-            this.showPoints.Width = 116;
-            // 
-            // showAnswer
-            // 
-            this.showAnswer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.showAnswer.DataPropertyName = "showAnswer";
-            this.showAnswer.HeaderText = "Mostrar respuesta";
-            this.showAnswer.Name = "showAnswer";
-            this.showAnswer.Width = 134;
-            // 
-            // Factor
-            // 
-            this.Factor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Factor.DataPropertyName = "Factor";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle10.Format = "N2";
-            this.Factor.DefaultCellStyle = dataGridViewCellStyle10;
-            this.Factor.HeaderText = "Factor";
-            this.Factor.Name = "Factor";
-            this.Factor.ReadOnly = true;
-            this.Factor.Width = 80;
-            // 
-            // Questions
-            // 
-            this.Questions.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Questions.DataPropertyName = "Questions";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.Questions.DefaultCellStyle = dataGridViewCellStyle11;
-            this.Questions.HeaderText = "Preguntas";
-            this.Questions.Name = "Questions";
-            this.Questions.ReadOnly = true;
-            this.Questions.Width = 108;
-            // 
-            // preferencesBS
-            // 
-            this.preferencesBS.DataMember = "Preferences";
-            this.preferencesBS.DataSource = this.dB;
-            // 
-            // examsListDGV
-            // 
-            this.examsListDGV.AllowUserToAddRows = false;
-            this.examsListDGV.AllowUserToDeleteRows = false;
-            this.examsListDGV.AllowUserToOrderColumns = true;
-            this.examsListDGV.AutoGenerateColumns = false;
-            this.examsListDGV.BackgroundColor = System.Drawing.Color.PaleTurquoise;
-            this.examsListDGV.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.examsListDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
-            this.examsListDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.examsListDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn30,
-            this.Time,
-            this.GUID,
-            this.dataGridViewTextBoxColumn22,
-            this.QIDString,
-            this.CLAnswer,
-            this.dataGridViewTextBoxColumn35});
-            this.examsListDGV.DataSource = this.examsListBS;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.examsListDGV.DefaultCellStyle = dataGridViewCellStyle14;
-            this.examsListDGV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.examsListDGV.EnableHeadersVisualStyles = false;
-            this.examsListDGV.Location = new System.Drawing.Point(3, 370);
-            this.examsListDGV.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.examsListDGV.MultiSelect = false;
-            this.examsListDGV.Name = "examsListDGV";
-            this.examsListDGV.ReadOnly = true;
-            this.examsListDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.examsListDGV.Size = new System.Drawing.Size(931, 228);
-            this.examsListDGV.TabIndex = 4;
-            this.examsListDGV.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.examsListDGV_RowHeaderMouseDoubleClick);
-            // 
-            // dataGridViewTextBoxColumn30
-            // 
-            this.dataGridViewTextBoxColumn30.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn30.DataPropertyName = "EID";
-            this.dataGridViewTextBoxColumn30.HeaderText = "EID";
-            this.dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
-            this.dataGridViewTextBoxColumn30.ReadOnly = true;
-            this.dataGridViewTextBoxColumn30.Width = 59;
-            // 
-            // Time
-            // 
-            this.Time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Time.DataPropertyName = "Time";
-            this.Time.HeaderText = "Creado";
-            this.Time.Name = "Time";
-            this.Time.ReadOnly = true;
-            this.Time.Width = 88;
-            // 
-            // GUID
-            // 
-            this.GUID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.GUID.DataPropertyName = "GUID";
-            this.GUID.HeaderText = "GUID";
-            this.GUID.Name = "GUID";
-            this.GUID.ReadOnly = true;
-            this.GUID.Width = 73;
-            // 
-            // dataGridViewTextBoxColumn22
-            // 
-            this.dataGridViewTextBoxColumn22.DataPropertyName = "Questions";
-            this.dataGridViewTextBoxColumn22.HeaderText = "Questions";
-            this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
-            this.dataGridViewTextBoxColumn22.ReadOnly = true;
-            // 
-            // QIDString
-            // 
-            this.QIDString.DataPropertyName = "CQIDString";
-            this.QIDString.HeaderText = "QIDString";
-            this.QIDString.Name = "QIDString";
-            this.QIDString.ReadOnly = true;
-            // 
-            // CLAnswer
-            // 
-            this.CLAnswer.DataPropertyName = "CLAnswer";
-            this.CLAnswer.HeaderText = "CLAnswer";
-            this.CLAnswer.Name = "CLAnswer";
-            this.CLAnswer.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn35
-            // 
-            this.dataGridViewTextBoxColumn35.DataPropertyName = "LQuestion";
-            this.dataGridViewTextBoxColumn35.HeaderText = "LQuestion";
-            this.dataGridViewTextBoxColumn35.Name = "dataGridViewTextBoxColumn35";
-            this.dataGridViewTextBoxColumn35.ReadOnly = true;
-            // 
-            // examsListBS
-            // 
-            this.examsListBS.DataMember = "ExamsList";
-            this.examsListBS.DataSource = this.dB;
-            this.examsListBS.Sort = "";
-            // 
-            // toolStrip6
-            // 
-            this.toolStrip6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.prefTLP.SetColumnSpan(this.toolStrip6, 2);
-            this.toolStrip6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStrip6.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip6.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel3,
-            this.titleBox});
-            this.toolStrip6.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip6.Name = "toolStrip6";
-            this.toolStrip6.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip6.Size = new System.Drawing.Size(1274, 38);
-            this.toolStrip6.TabIndex = 6;
-            this.toolStrip6.Text = "toolStrip6";
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.BackColor = System.Drawing.Color.Gray;
-            this.toolStripLabel3.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold);
-            this.toolStripLabel3.ForeColor = System.Drawing.Color.GreenYellow;
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(165, 35);
-            this.toolStripLabel3.Text = "Título del Examen";
-            // 
-            // titleBox
-            // 
-            this.titleBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.titleBox.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleBox.ForeColor = System.Drawing.Color.Azure;
-            this.titleBox.Name = "titleBox";
-            this.titleBox.Size = new System.Drawing.Size(900, 38);
-            this.titleBox.Text = "probando";
+            // ucGenerator1
+            // 
+            this.ucGenerator1.BackColor = System.Drawing.Color.Gray;
+            this.ucGenerator1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucGenerator1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucGenerator1.Location = new System.Drawing.Point(3, 4);
+            this.ucGenerator1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucGenerator1.Name = "ucGenerator1";
+            this.ucGenerator1.Size = new System.Drawing.Size(1274, 602);
+            this.ucGenerator1.TabIndex = 0;
             // 
             // dbTab
             // 
             this.dbTab.BackColor = System.Drawing.Color.Gray;
-            this.dbTab.Controls.Add(this.dbTLP);
+            this.dbTab.Controls.Add(this.ucDataBase1);
             this.dbTab.Location = new System.Drawing.Point(4, 33);
             this.dbTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dbTab.Name = "dbTab";
@@ -811,245 +103,38 @@
             this.dbTab.TabIndex = 1;
             this.dbTab.Text = "Base de Datos";
             // 
-            // dbTLP
+            // ucDataBase1
             // 
-            this.dbTLP.AutoScroll = true;
-            this.dbTLP.ColumnCount = 3;
-            this.dbTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.80335F));
-            this.dbTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.19665F));
-            this.dbTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 468F));
-            this.dbTLP.Controls.Add(this.questionsDataGridView, 0, 0);
-            this.dbTLP.Controls.Add(this.answersDataGridView, 2, 0);
-            this.dbTLP.Controls.Add(this.splitContainer1, 1, 0);
-            this.dbTLP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dbTLP.Location = new System.Drawing.Point(3, 4);
-            this.dbTLP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dbTLP.Name = "dbTLP";
-            this.dbTLP.RowCount = 1;
-            this.dbTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.dbTLP.Size = new System.Drawing.Size(1274, 602);
-            this.dbTLP.TabIndex = 0;
+            this.ucDataBase1.BackColor = System.Drawing.Color.Gray;
+            this.ucDataBase1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDataBase1.ExamGUI = false;
+            this.ucDataBase1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucDataBase1.Location = new System.Drawing.Point(3, 4);
+            this.ucDataBase1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucDataBase1.Name = "ucDataBase1";
+            this.ucDataBase1.Size = new System.Drawing.Size(1274, 602);
+            this.ucDataBase1.TabIndex = 0;
             // 
-            // questionsDataGridView
+            // EvalTab
             // 
-            this.questionsDataGridView.AutoGenerateColumns = false;
-            this.questionsDataGridView.BackgroundColor = System.Drawing.Color.SandyBrown;
-            this.questionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.questionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn8,
-            this.FigureFile,
-            this.dataGridViewTextBoxColumn7});
-            this.questionsDataGridView.DataSource = this.questionsBS;
-            this.questionsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.questionsDataGridView.Location = new System.Drawing.Point(3, 4);
-            this.questionsDataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.questionsDataGridView.Name = "questionsDataGridView";
-            this.questionsDataGridView.Size = new System.Drawing.Size(379, 594);
-            this.questionsDataGridView.TabIndex = 1;
-            this.questionsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.questionsDataGridView_CellContentClick);
+            this.EvalTab.Controls.Add(this.ucValidator1);
+            this.EvalTab.Location = new System.Drawing.Point(4, 33);
+            this.EvalTab.Name = "EvalTab";
+            this.EvalTab.Size = new System.Drawing.Size(1280, 610);
+            this.EvalTab.TabIndex = 3;
+            this.EvalTab.Text = "Evaluador";
+            this.EvalTab.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewTextBoxColumn5
+            // ucValidator1
             // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "QID";
-            this.dataGridViewTextBoxColumn5.HeaderText = "QID";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Question";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Question";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "Weight";
-            this.dataGridViewTextBoxColumn8.HeaderText = "Weight";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // FigureFile
-            // 
-            this.FigureFile.DataPropertyName = "FigureFile";
-            this.FigureFile.HeaderText = "FigureFile";
-            this.FigureFile.Name = "FigureFile";
-            this.FigureFile.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.FigureFile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "QuestionMeta";
-            this.dataGridViewTextBoxColumn7.HeaderText = "QuestionMeta";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // questionsBS
-            // 
-            this.questionsBS.DataMember = "Questions";
-            this.questionsBS.DataSource = this.dB;
-            // 
-            // answersDataGridView
-            // 
-            this.answersDataGridView.AutoGenerateColumns = false;
-            this.answersDataGridView.BackgroundColor = System.Drawing.Color.Tan;
-            this.answersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.answersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn4});
-            this.answersDataGridView.DataSource = this.answersBS;
-            this.answersDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.answersDataGridView.Location = new System.Drawing.Point(808, 4);
-            this.answersDataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.answersDataGridView.Name = "answersDataGridView";
-            this.answersDataGridView.Size = new System.Drawing.Size(463, 594);
-            this.answersDataGridView.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "AID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "AID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Answer";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Answer";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Correct";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Correct";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "QID";
-            this.dataGridViewTextBoxColumn2.HeaderText = "QID";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "AnswerMeta";
-            this.dataGridViewTextBoxColumn4.HeaderText = "AnswerMeta";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // answersBS
-            // 
-            this.answersBS.DataMember = "Answers";
-            this.answersBS.DataSource = this.dB;
-            this.answersBS.Sort = "";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(388, 3);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.richQuesBox);
-            this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.richAnsBox);
-            this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Size = new System.Drawing.Size(414, 596);
-            this.splitContainer1.SplitterDistance = 358;
-            this.splitContainer1.TabIndex = 2;
-            // 
-            // richQuesBox
-            // 
-            this.richQuesBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richQuesBox.Location = new System.Drawing.Point(0, 0);
-            this.richQuesBox.Name = "richQuesBox";
-            this.richQuesBox.Size = new System.Drawing.Size(414, 358);
-            this.richQuesBox.TabIndex = 0;
-            this.richQuesBox.Text = "";
-            // 
-            // richAnsBox
-            // 
-            this.richAnsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richAnsBox.Location = new System.Drawing.Point(0, 0);
-            this.richAnsBox.Name = "richAnsBox";
-            this.richAnsBox.Size = new System.Drawing.Size(414, 234);
-            this.richAnsBox.TabIndex = 0;
-            this.richAnsBox.Text = "";
-            // 
-            // otherTab
-            // 
-            this.otherTab.BackColor = System.Drawing.Color.Gray;
-            this.otherTab.Controls.Add(this.otherTLP);
-            this.otherTab.Location = new System.Drawing.Point(4, 33);
-            this.otherTab.Name = "otherTab";
-            this.otherTab.Padding = new System.Windows.Forms.Padding(3);
-            this.otherTab.Size = new System.Drawing.Size(1280, 610);
-            this.otherTab.TabIndex = 4;
-            this.otherTab.Text = "Otros";
-            // 
-            // otherTLP
-            // 
-            this.otherTLP.ColumnCount = 2;
-            this.otherTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.otherTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.otherTLP.Controls.Add(this.orderDataGridView, 0, 0);
-            this.otherTLP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.otherTLP.Location = new System.Drawing.Point(3, 3);
-            this.otherTLP.Name = "otherTLP";
-            this.otherTLP.RowCount = 2;
-            this.otherTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.otherTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.otherTLP.Size = new System.Drawing.Size(1274, 604);
-            this.otherTLP.TabIndex = 0;
-            // 
-            // orderDataGridView
-            // 
-            this.orderDataGridView.AutoGenerateColumns = false;
-            this.orderDataGridView.BackgroundColor = System.Drawing.Color.Gold;
-            this.orderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.orderDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn26,
-            this.dataGridViewTextBoxColumn27,
-            this.dataGridViewTextBoxColumn28});
-            this.orderDataGridView.DataSource = this.orderBS;
-            this.orderDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.orderDataGridView.Location = new System.Drawing.Point(3, 4);
-            this.orderDataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.orderDataGridView.Name = "orderDataGridView";
-            this.orderDataGridView.Size = new System.Drawing.Size(631, 294);
-            this.orderDataGridView.TabIndex = 3;
-            // 
-            // dataGridViewTextBoxColumn26
-            // 
-            this.dataGridViewTextBoxColumn26.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn26.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
-            // 
-            // dataGridViewTextBoxColumn27
-            // 
-            this.dataGridViewTextBoxColumn27.DataPropertyName = "QID";
-            this.dataGridViewTextBoxColumn27.HeaderText = "QID";
-            this.dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
-            // 
-            // dataGridViewTextBoxColumn28
-            // 
-            this.dataGridViewTextBoxColumn28.DataPropertyName = "AID";
-            this.dataGridViewTextBoxColumn28.HeaderText = "AID";
-            this.dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
-            // 
-            // orderBS
-            // 
-            this.orderBS.DataMember = "Order";
-            this.orderBS.DataSource = this.dB;
-            this.orderBS.Sort = "";
+            this.ucValidator1.BackColor = System.Drawing.Color.Gray;
+            this.ucValidator1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucValidator1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucValidator1.Location = new System.Drawing.Point(0, 0);
+            this.ucValidator1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucValidator1.Name = "ucValidator1";
+            this.ucValidator1.Size = new System.Drawing.Size(1280, 610);
+            this.ucValidator1.TabIndex = 0;
             // 
             // TLP
             // 
@@ -1095,6 +180,33 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(86, 56);
             this.toolStripLabel1.Text = "toolStripLabel1";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // ExamTab
+            // 
+            this.ExamTab.Controls.Add(this.ucExamGUI);
+            this.ExamTab.Location = new System.Drawing.Point(4, 33);
+            this.ExamTab.Name = "ExamTab";
+            this.ExamTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ExamTab.Size = new System.Drawing.Size(1280, 610);
+            this.ExamTab.TabIndex = 4;
+            this.ExamTab.Text = "Examen GUI";
+            this.ExamTab.UseVisualStyleBackColor = true;
+            // 
+            // ucExamGUI
+            // 
+            this.ucExamGUI.BackColor = System.Drawing.Color.Gray;
+            this.ucExamGUI.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucExamGUI.ExamGUI = true;
+            this.ucExamGUI.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucExamGUI.Location = new System.Drawing.Point(3, 3);
+            this.ucExamGUI.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucExamGUI.Name = "ucExamGUI";
+            this.ucExamGUI.Size = new System.Drawing.Size(1274, 604);
+            this.ucExamGUI.TabIndex = 1;
+            // 
             // ExamFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1110,34 +222,10 @@
     "na@usb.ve";
             this.tab.ResumeLayout(false);
             this.prefTab.ResumeLayout(false);
-            this.prefTLP.ResumeLayout(false);
-            this.prefTLP.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logDGV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.logBS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.examsDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.examsBS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.preferencesDGV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.preferencesBS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.examsListDGV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.examsListBS)).EndInit();
-            this.toolStrip6.ResumeLayout(false);
-            this.toolStrip6.PerformLayout();
             this.dbTab.ResumeLayout(false);
-            this.dbTLP.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.questionsDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.questionsBS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.answersDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.answersBS)).EndInit();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.otherTab.ResumeLayout(false);
-            this.otherTLP.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.orderDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBS)).EndInit();
+            this.EvalTab.ResumeLayout(false);
             this.TLP.ResumeLayout(false);
+            this.ExamTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1147,98 +235,26 @@
         private System.Windows.Forms.TabControl tab;
         private System.Windows.Forms.TableLayoutPanel TLP;
         private System.Windows.Forms.TabPage dbTab;
-        private System.Windows.Forms.TableLayoutPanel dbTLP;
-        private DB dB;
-        private System.Windows.Forms.BindingSource answersBS;
-        private System.Windows.Forms.BindingSource questionsBS;
-        private System.Windows.Forms.DataGridView questionsDataGridView;
-        private System.Windows.Forms.DataGridView answersDataGridView;
-        private System.Windows.Forms.BindingSource examsBS;
-        private System.Windows.Forms.DataGridView examsDataGridView;
-        private System.Windows.Forms.BindingSource orderBS;
-       
-        private System.Windows.Forms.DataGridView orderDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
-        private System.Windows.Forms.TabPage prefTab;
-        private System.Windows.Forms.TableLayoutPanel prefTLP;
-        private System.Windows.Forms.BindingSource preferencesBS;
-   
-        private System.Windows.Forms.DataGridView preferencesDGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.BindingSource examsListBS;
     
-
-        private System.Windows.Forms.DataGridView examsListDGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewButtonColumn FigureFile;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.TabPage otherTab;
-        private System.Windows.Forms.TableLayoutPanel otherTLP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.RichTextBox richQuesBox;
-        private System.Windows.Forms.RichTextBox richAnsBox;
-        private System.Windows.Forms.DataGridView logDGV;
-        private System.Windows.Forms.BindingSource logBS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Time;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GUID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QIDString;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CLAnswer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn35;
-        private System.Windows.Forms.ToolStrip toolStrip6;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
-        private System.Windows.Forms.ToolStripTextBox titleBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn41;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn42;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn43;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn44;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn46;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn47;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn48;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn49;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn50;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn45;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn51;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QuestionsColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Year;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AYear;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Class;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modelsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn d1DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn d2DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn d3DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn d4DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn d5DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Points;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn showPoints;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn showAnswer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Factor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Questions;
         private Ctrl ctrl1;
+        private System.Windows.Forms.TabPage prefTab;
+        private ucGenerator ucGenerator1;
+        private ucDataBase ucDataBase1;
+        private System.Windows.Forms.TabPage EvalTab;
+        private ucValidator ucValidator1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.TabPage ExamTab;
+        private ucDataBase ucExamGUI;
         //  private Exam exam1;
     }
 }

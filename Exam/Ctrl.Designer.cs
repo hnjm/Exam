@@ -76,7 +76,7 @@
             this.toolStripLabel4.Name = "toolStripLabel4";
             this.toolStripLabel4.Size = new System.Drawing.Size(79, 32);
             this.toolStripLabel4.Text = "Materia";
-            this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
+          
             // 
             // materiaBox
             // 
@@ -99,7 +99,6 @@
             this.buscarBtn.Name = "buscarBtn";
             this.buscarBtn.Size = new System.Drawing.Size(72, 32);
             this.buscarBtn.Text = "Buscar";
-            this.buscarBtn.Click += new System.EventHandler(this.txtchg);
             // 
             // TLP
             // 
@@ -266,20 +265,20 @@
 
         #endregion
         private System.Windows.Forms.TableLayoutPanel TLP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+     //   private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
+     //   private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+      //  private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
+      //  private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
+       // private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
     
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+      //  private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.StatusStrip statusTS;
         private System.Windows.Forms.ToolStripStatusLabel statuslbl;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+    //    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripProgressBar pBar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
+    //    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
         private System.Windows.Forms.ToolStrip toolStrip7;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
         private System.Windows.Forms.ToolStripComboBox materiaBox;

@@ -33,7 +33,16 @@ namespace Exam
             Image img = code.GetGraphic(size);
             return img;
         }
+        public static IEnumerable<T> RandomnizeStringsTimes<T>(IEnumerable<T> aenumerable, int times)
+        {
+            for (int i = 0; i < times; i++)
+            {
+                aenumerable = Tools.RandomizeStrings(aenumerable); //1
+            //    Application.DoEvents();
+            }
 
+            return aenumerable;
+        }
         public static byte[] imageToByteArray(System.Drawing.Image imageIn)
         {
             MemoryStream ms = new MemoryStream();

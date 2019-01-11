@@ -18,17 +18,19 @@ namespace Exam
 
         public void Set(ref Interface inter)
         {
-            Rsx.Dumb.Dumb.FD(ref dB);
+        
 
             Interface = inter;
 
             this.ctrl1.Set(ref inter);
-
-            setDGVs();
-
-            setBindings();
+            this.ucGenerator1.Set(ref inter);
+            this.ucDataBase1.Set(ref inter);
+            this.ucExamGUI.Set(ref inter);
+            this.ucValidator1.Set(ref inter);
 
             setMenues();
+
+         //   Rsx.Dumb.Dumb.FD(ref dB);
 
             this.Load += load;
         }
@@ -40,20 +42,24 @@ namespace Exam
             Interface.IGenerator.DeleteExamsFiles();
         }
 
-        private void examsListDGV_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            Interface.IGenerator.OpenFile();
-        }
 
         private void generateExams_Click(object sender, EventArgs e)
         {
+            Interface.Save();
             Interface.IGenerator.DoExams();
         }
 
         private void generateList_Click(object sender, EventArgs e)
         {
-            Interface.IGenerator.MakeEvaluationList();
+            // Interface.IGenerator.MakeEvaluationList();
+            DB.PreferencesRow p = Interface.IBS.CurrentPreference;
+          DialogResult r =  openFileDialog1.ShowDialog();
+            if (r == DialogResult.OK)
+            {
+                Interface.IGenerator.MakeList(openFileDialog1.FileName, p.Class, p.AYearID);
+            }
         }
+
 
         private void generateQuestion_Clicked(object sender, EventArgs e)
         {
@@ -65,74 +71,37 @@ namespace Exam
             this.ctrl1.IMenu.Load();
         }
 
-        private void questionsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex != this.FigureFile.Index) return;
 
-            MessageBox.Show("open file");
-            // this.richAnsBox.SaveFile(, RichTextBoxStreamType.) this.richAnsBox.LoadFile()
-        }
-
-        private void setBindings()
-        {
-            String txt = "Text";
-            DataSourceUpdateMode mode = DataSourceUpdateMode.OnPropertyChanged;
-
-            Binding question = new Binding(txt, Interface.IBS.Questions, Interface.IdB.Questions.QuestionColumn.ColumnName, true, mode);
-            Binding answer = new Binding(txt, Interface.IBS.Answers, Interface.IdB.Answers.AnswerColumn.ColumnName, true, mode);
-
-            this.richQuesBox.DataBindings.Add(question);
-            this.richAnsBox.DataBindings.Add(answer);
-
-            Binding title = new Binding(txt, Interface.IBS.Preferences, Interface.IdB.Preferences.TitleColumn.ColumnName, true, mode);
-
-            this.titleBox.TextBox.DataBindings.Add(title);
-
-            Binding ayear = new Binding(txt, Interface.IBS.Preferences, Interface.IdB.Preferences.AYearColumn.ColumnName, true, mode);
-        }
+      
 
         /// <summary>
         /// OK
         /// </summary>
-        private void setDGVs()
-        {
-            this.examsDataGridView.DataSource = Interface.IBS.Exam;
-            this.examsListDGV.DataSource = Interface.IBS.ExamsList;
-            this.answersDataGridView.DataSource = Interface.IBS.Answers;
-            this.questionsDataGridView.DataSource = Interface.IBS.Questions;
-            this.preferencesDGV.DataSource = Interface.IBS.Preferences;
-            this.logDGV.DataSource = Interface.IBS.LogPref;
-
-            this.orderDataGridView.DataSource = Interface.IBS.Order;
-
-            this.orderBS.Dispose();
-            this.preferencesBS.Dispose();
-            this.logBS.Dispose();
-
-            this.examsBS.Dispose();
-            this.examsListBS.Dispose();
-            this.answersBS.Dispose();
-            this.questionsBS.Dispose();
-        }
+     
 
         private void setMenues()
         {
-            this.IMenu.SetDGVs(ref preferencesDGV);
-            this.IMenu.SetDGVs(ref examsListDGV);
-            this.IMenu.SetDGVs(ref examsDataGridView);
+            object[] arr = ucGenerator1.DGVs;
+            foreach (var item in arr)
+            {
+                DataGridView v = item as DataGridView;
+                this.IMenu.SetDGVs(ref v);
+            }
+            arr = ucDataBase1.DGVs;
+            foreach (var item in arr)
+            {
+                DataGridView v = item as DataGridView;
+                this.IMenu.SetDGVs(ref v);
+            }
 
-            this.IMenu.SetDGVs(ref questionsDataGridView);
-            this.IMenu.SetDGVs(ref answersDataGridView);
-            this.IMenu.SetDGVs(ref orderDataGridView);
-            this.IMenu.SetDGVs(ref logDGV);
 
             EventHandler h1 = this.generateExams_Click;
-            // EventHandler h2 = this.generateList_Click;
+             EventHandler h2 = this.generateList_Click;
 
             EventHandler h4 = this.generateQuestion_Clicked;
             EventHandler h3 = this.deleteExams_Clicked;
             this.IMenu.SetMenues("Generar Exámenes", ref h1);
-            // this.ucMenu.SetMenues("Generar Listas", ref h2);
+             this.IMenu.SetMenues("Generar Listas", ref h2);
             this.IMenu.SetMenues("Limpiar Base de Datos de Exámenes", ref h3);
             this.IMenu.SetMenues("Agregar una pregunta", ref h4);
         }

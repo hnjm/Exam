@@ -44,15 +44,7 @@ namespace Exam
             UIControl.FillABox(this.yearBox.ComboBox, hs, true, false);
         }
 
-        private void form_Load(object sender, EventArgs e)
-        {
-            Interface.IGenerator.PopulateBasic();
-
-            fillBoxes();
-
-            this.yearBox.Text = DateTime.Now.Year.ToString();
-            this.ayearIDbox.Text = Interface.IdB.ThisAYear;
-        }
+      
 
         private void handler(object sender, EventArgs e)
         {
@@ -88,6 +80,12 @@ namespace Exam
             this.ayearIDbox.ComboBox.DataBindings.Add(yearID);
             this.aYearBox.TextBox.DataBindings.Add(ayear);
 
+         //   this.materiaBox.data
+      //      this.toolStripLabel4.Click += (this.toolStripLabel4_Click);
+            this.buscarBtn.Click += (this.txtchg);
+
+
+
             this.aYearBox.TextChanged += txtchg;
             this.yearBox.TextChanged += txtchg;
             this.materiaBox.TextChanged += txtchg;
@@ -111,26 +109,58 @@ namespace Exam
             //initial binding source to link to
             this.ucMenu.BS = Interface.IBS.Preferences;
             //table adapter
-            this.ucMenu.TableAM[0] = DB.TAM;
-            this.ucMenu.TableAM[1] = DB.TAMQA;
-            this.ucMenu.Refresher += this.form_Load;
+            //       this.ucMenu.TableAM[0] = DB.TAM;
+            //    this.ucMenu.TableAM[1] = DB.TAMQA;
+            //  this.ucMenu.HashTA = DB.hsTA;
+            this.ucMenu.Saver += delegate
+            {
+                Interface.Save();
+            };
+            this.ucMenu.Refresher += delegate
+            {
+                Interface.IGenerator.PopulateBasic();
+
+                this.Interface.IBS.Working = true;
+
+                fillBoxes();
+                this.yearBox.Text = DateTime.Now.Year.ToString();
+                this.ayearIDbox.Text = Interface.IdB.ThisAYear;
+
+                this.Interface.IBS.Working = false;
+            };
+            this.ucMenu.Refresher += delegate
+            {
+                this.buscarBtn.PerformClick();
+            };
+
+
+
         }
+
 
         private void toolStripLabel4_Click(object sender, EventArgs e)
         {
             string content = this.materiaBox.Text.Trim();
             if (string.IsNullOrEmpty(content)) return;
-            Interface.IGenerator.FillClassDataBase(content);
+         //   Interface.IGenerator.FillClassDataBase(content);
         }
 
         private void txtchg(object sender, EventArgs e)
         {
+            Interface.IBS.Working = true;
+
+
+
+
             if (sender.Equals(this.materiaBox) || sender.Equals(this.buscarBtn))
             {
                 Interface.IGenerator.FillClassDataBase(this.materiaBox.Text);
             }
+
             Interface.IGenerator.FillExams(this.materiaBox.Text);
             Interface.IGenerator.FillStudents(this.materiaBox.Text, this.yearBox.Text, this.aYearBox.Text);
+
+            Interface.IBS.Working = false;
         }
 
         public Ctrl()

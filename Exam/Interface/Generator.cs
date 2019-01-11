@@ -15,467 +15,12 @@ namespace Exam
 {
     public partial class Generator
     {
-        public static void MakeExamCoupon(ref W.Document doc, string qrCodeJPG, ref ExamsListRow ls, bool showAnswer, string password)
-        {
-            string text = string.Empty;
-
-            W.Range aux = null;
-
-            aux = doc.Paragraphs.Last.Range;
-            text = "\n\n\n";
-            text += Resources.CortaCupon;
-            // text += "\n\n\n";
-
-            aux.Text = text;
-            aux.set_Style(W.WdBuiltinStyle.wdStyleFooter);
-            aux.InsertParagraphAfter();
-            doc.Paragraphs.Add(aux);
-
-            aux = doc.Paragraphs.Last.Range;
-            object lastRange = aux;
-            aux.InlineShapes.AddPicture(qrCodeJPG, ref roObj, ref roObj, ref lastRange);
-            aux.InlineShapes.AddPicture(ID_FILE, ref roObj, ref roObj, ref lastRange);
-            aux.set_Style(W.WdBuiltinStyle.wdStyleTitle);
-            aux.InsertParagraphAfter();
-            doc.Paragraphs.Add(aux);
-
-            aux = doc.Paragraphs.Last.Range;
-
-            int cuadros = ls.GetExamsRows().Count();
-            text = string.Empty;
-            text += Resources.ExamenRespuesta;
-            text += "     ";
-
-            string ahorcado = string.Empty;
-            int j = 0;
-            for (int i = 0; i < cuadros; i++)
-            {
-                ahorcado += "__ ";
-                j++;
-                if (j == 5)
-                {
-                    ahorcado += "-";
-                    j = 0;
-                }
-            }
-
-            text += ahorcado;
-
-            text += "\n\n";
-            text += Resources.ExamenRespuesta;
-            text += "     ";
-
-            string ahorcadoNr = string.Empty;
-            j = 0;
-            for (int i = 0; i < cuadros; i++)
-            {
-                int cuenta = i + 1;
-                ahorcadoNr += cuenta.ToString();
-                ahorcadoNr += " ";
-                if (cuenta < 10) ahorcadoNr += "  ";
-
-                j++;
-                if (j == 5)
-                {
-                    ahorcadoNr += "-";
-                    j = 0;
-                }
-            }
-
-            text += ahorcadoNr;
-
-            if (showAnswer)
-            {
-                text += "\n\n";
-                text += Resources.ExamenRespuestaCorrecta;
-                text += "\t";
-                text += Rsx.Encryption.AESThenHMAC.SimpleDecryptWithPassword(ls.CLAnswer, password, 0);
-                text += "\n\n";
-                text += "Encriptada como:\t";
-                text += ls.CLAnswer;
-                text += "\n\n";
-                text += "Examen modelo:\t";
-                text += ls.GUID;
-                // text += "\n\n"; text += "Encriptado como:\t"; text += ;
-            }
-
-            aux.Text = text;
-            aux.set_Style(W.WdBuiltinStyle.wdStyleFooter); /// ESTA ES LA CLAVE!!!
-            aux.InsertParagraphAfter();
-            doc.Paragraphs.Add(aux);
-        }
-
-        public void PopulateBasic()
-        {
-            this.inter.IBS.Working = true;
-
-            FillClasses();
-
-            FillAYear();
-
-            FillPreferences();
-
-            this.inter.IBS.Working = false;
-        }
-
-        /// <summary>
-        /// gets the questions that satisfy a given weight, based on the ExamRow.MID tag
-        /// </summary>
-        /// <param name="count">     how many questions to add from a given weight</param>
-        /// <param name="exams">     a raw list of questions to weight in</param>
-        /// <param name="multiplier">the factor to set MID range to search for</param>
-        /// <param name="weight">    the weight</param>
-        /// <returns>The weighted questions</returns>
-        public static IList<ExamsRow> GetByWeight(ref IList<ExamsRow> exams, int multiplier, ref PreferencesRow p)
-        {
-            int min = 0;
-            int max = 0;
-
-            int howMany;
-            List<DB.ExamsRow> join = new List<DB.ExamsRow>(); //the array that will contain the weighted questions;
-            for (int x = 1; x <= 5; x++)
-            {
-                min = 0;
-                min = x * multiplier;
-
-                max = 0;
-                max = (x + 1) * multiplier;
-
-                howMany = 0; //initialize
-                howMany = (int)p["D" + x]; // questions to add from preferences
-
-                IEnumerable<DB.ExamsRow> rows = exams.Where(o => o.MID > min && o.MID <= max).Take(howMany);
-
-                join.AddRange(rows);
-            }
-
-            return join;
-        }
-
-        public static void MakeExamFileBody(ref IList<string[]> questionAnswer, ref W.Document doc)
-        {
-            W.Range aux = null;
-
-            foreach (string[] qAns in questionAnswer)
-            {
-                aux = doc.Paragraphs.Last.Range;
-                aux.Text = qAns[0];
-                aux.set_Style(W.WdBuiltinStyle.wdStyleHeading2);
-                doc.Paragraphs.Add(aux); // insert onces
-
-                aux = doc.Paragraphs.Last.Range;
-                aux.Text = qAns[1]; // now you can isert the questions
-                aux.set_Style(W.WdBuiltinStyle.wdStyleHeading3);
-                doc.Paragraphs.Add(aux);
-            }
-        }
-
-        public static void MakeExamIntro(ref W.Document doc, string qrCodeJPG, string Intro, string Title)
-        {
-            W.Range aux = null;
-
-            aux = doc.Range(0, Type.Missing);
-            aux.Text = Title; ///TITULO
-            aux.set_Style(W.WdBuiltinStyle.wdStyleHeading1);
-
-            aux.InsertParagraphAfter();
-            doc.Paragraphs.Add(aux);
-
-            aux = doc.Paragraphs.Last.Range;
-            object lastRange = aux;
-
-            aux.InlineShapes.AddPicture(qrCodeJPG, ref roObj, ref roObj, ref lastRange);
-            aux.InlineShapes.AddPicture(ID_FILE, ref roObj, ref roObj, ref lastRange);
-
-            aux.set_Style(W.WdBuiltinStyle.wdStyleCaption); //title style for image???
-            aux.InsertParagraphAfter();
-            doc.Paragraphs.Add(aux); //esto no estaba
-
-            /////TITULOOOOOOOOOOOO
-            if (string.IsNullOrEmpty(Intro)) return;
-
-            aux = doc.Paragraphs.Last.Range;
-            aux.Text = Intro;
-            aux.set_Style(W.WdBuiltinStyle.wdStyleFooter);
-            aux.InsertParagraphAfter();
-            doc.Paragraphs.Add(aux);
-
-            // aux = doc.Paragraphs.Last.Range;
-        }
-
-        /// <summary>
-        /// PERHAPS THE MOST IKPORTAN, WHERE QAS ARE GENERATED AND PASSWORDS TOO
-        /// </summary>
-        /// <param name="exams">         </param>
-        /// <param name="pr">            </param>
-        /// <param name="questionAnswer"></param>
-        /// <returns></returns>
-        public static string[] MakeQAs(ref IEnumerable<ExamsRow> exams, ref PreferencesRow pr, out IList<string[]> questionAnswer)
-        {
-            string Clave;
-            string questionWeight;
-            string qidString;
-
-            int pregunta = 1;
-            string examen = string.Empty;
-            Clave = string.Empty;
-            questionWeight = string.Empty;
-            qidString = string.Empty;
-            int claveCount = 1;
-
-            questionAnswer = new List<string[]>();
-
-            foreach (ExamsRow r in exams)
-            {
-                string[] qAns = new string[2];
-                questionAnswer.Add(qAns);
-
-                QuestionsRow q = r.QuestionsRow;
-                qidString += r.QID.ToString() + SEP.ToString();
-
-                Decimal askValue = Convert.ToDecimal(q.Weight * pr.Factor);
-
-                string weight = Decimal.Round(askValue, 3).ToString();
-
-                examen = pregunta.ToString() + "- " + q.Question; //pregunta
-                if (pr.showPoints)
-                {
-                    examen += "\t(Puntos: " + weight + " )";
-                }
-                examen += "\n";
-
-                pregunta++; //contador
-
-                qAns[0] = examen;
-
-                string[] answers = r.AIDString.Split(SEP2); ///separates de correct value AID, from the array of answers AIDs
-                int AIDcorrecto = Convert.ToInt32(answers[1]); //toma la respuesta correcta
-                answers = answers[0].Split(SEP); //the array of answers ID
-
-                IEnumerable<AnswersRow> answ = r.QuestionsRow.GetAnswersRows();
-                int option = 0;
-                examen = string.Empty;
-
-                foreach (string s in answers)
-                {
-                    int aid = Convert.ToInt32(s);
-                    AnswersRow a = answ.FirstOrDefault(o => o.AID == aid); //selectivamente en el mismo orden en que fue generada
-
-                    string respuesta = a.Answer;
-                    char letra = Tools.Alpha[option];
-                    if (a.AID == AIDcorrecto)
-                    {
-                        Clave += letra;
-                    }
-
-                    examen += letra;
-                    examen += ") " + respuesta + "\n"; //respuesta
-                    option++;
-                }
-                //examen += "\n";
-
-                qAns[1] = examen;
-
-                questionWeight += q.Weight.ToString() + SEP.ToString(); // save a string of questionsWeights
-                if (claveCount == 5)
-                {
-                    Clave += SEP.ToString();
-                    claveCount = 0;
-                }
-
-                claveCount++;
-            }
-
-            if (qidString[qidString.Length - 1].Equals(SEP))
-            {
-                qidString = qidString.Substring(0, qidString.Length - 1); //erase last separator
-            }
-
-            if (questionWeight[questionWeight.Length - 1].Equals(SEP))
-            {
-                questionWeight = questionWeight.Substring(0, questionWeight.Length - 1); //erase last separator
-            }
-
-            questionWeight += SEP2.ToString() + pr.Factor.ToString(); //KEEP THE FACTOR IN THE STRING!!!
-
-            if (Clave[Clave.Length - 1].Equals(SEP))
-            {
-                Clave = Clave.Substring(0, Clave.Length - 1); //erase last separator
-            }
-
-            ///IMPORTANT CUMJULATIVE INFO
-            return new string[3] { Clave, questionWeight, qidString }; // LAnswer , LQuestion,
-        }
-
-        public static void MakeTableBytes<T>(ref T l, string examPath)
-        {
-            Type tipo = l.GetType();
-            byte[] arr2 = null;
-            // string afile = string.Empty;
-
-            if (tipo.Equals(typeof(ExamsListRow)))
-            {
-                ExamsListRow ls = l as ExamsListRow;
-
-                IEnumerable<ExamsRow> rows = ls.GetExamsRows();
-
-                ExamsDataTable exdt = new ExamsDataTable();
-                foreach (var item in rows) exdt.ImportRow(item);
-
-                // afile = ExasmPath + ls.EID.ToString();
-
-                arr2 = Tables.MakeDTBytes(ref exdt, examPath);
-                ls.EData = arr2;
-            }
-            else if (tipo.Equals(typeof(ExamsRow)))
-            {
-                //SAVE COPY OF TABLE
-
-                ExamsRow ex = l as ExamsRow;
-
-                // afile = ExasmPath + ex.QID.ToString(); IEnumerable<DB.QuestionsRow> shortQlist =
-                // new List<DB.QuestionsRow>(); ((IList<DB.QuestionsRow>)shortQlist).Add(ex.QuestionsRow);
-                QuestionsDataTable qdt = new QuestionsDataTable();
-                qdt.ImportRow(ex.QuestionsRow);
-                byte[] qarray = Tables.MakeDTBytes(ref qdt, examPath);
-                ex.QData = qarray;
-                Dumb.FD(ref qdt);
-
-                AnswersDataTable adt = new AnswersDataTable();
-                IEnumerable<AnswersRow> answ = ex.QuestionsRow.GetAnswersRows();
-                foreach (var item in answ) adt.ImportRow(item);
-                // afile = ExasmPath + ex.QueToString() + ".xml";
-                arr2 = Tables.MakeDTBytes(ref adt, examPath);
-                ex.AData = arr2;
-                Dumb.FD(ref adt);
-            }
-            else if (tipo.Equals(typeof(PreferencesRow)))
-            {
-                PreferencesRow p = l as PreferencesRow;              //SAVE A COPY OF EXAMS LISTS
-                IEnumerable<DB.ExamsListRow> rows = p.GetExamsListRows();
-
-                ExamsListDataTable dt = new ExamsListDataTable();
-                foreach (var item in rows) dt.ImportRow(item);
-
-                // afile = ExasmPath + p.PID.ToString() + ".xml";
-                arr2 = Tables.MakeDTBytes(ref dt, examPath);
-                p.ELData = arr2;
-
-                Dumb.FD(ref dt);
-            }
-        }
-
-        public static IList<ExamsRow> WeightThem(ref PreferencesRow p, ref IList<ExamsRow> exams)
-        {
-            // if (order)
-            {
-                exams = exams.OrderBy(o => o.QuestionsRow.Weight).ToList();
-            }
-
-            int multiplier = 10000;
-
-            IList<ExamsRow> rows = exams.ToList();
-            Func<ExamsRow, bool> MID = ex =>
-            {
-                ex.MID = (ex.QuestionsRow.Weight * multiplier);
-                ex.MID += rows.IndexOf(ex);
-                return true;
-            };
-
-            exams = exams.Where(MID).ToList();
-
-            rows = null;
-
-            /*
-            foreach (DB.ExamsRow ex in exams)
-            {
-                ex.MID = (ex.QuestionsRow.Weight * multiplier);
-                ex.MID += exams.IndexOf(ex);
-            }
-             */
-
-            ///FILTER ACCORDING TO PREFERENCES
-            // if (order)
-            {
-                exams = exams.OrderBy(o => o.MID).ToList();
-            }
-            IList<ExamsRow> join = null;
-
-            // if (order)
-            {
-                join = GetByWeight(ref exams, multiplier, ref p);
-            }
-            // else join = exams.ToList();
-            return join;
-        }
-
-        public void FillExams(string classe)
-        {
-            DB.TAM.ExamsListTableAdapter.FillByClass(this.inter.IdB.ExamsList, classe);
-        }
-
-        private static string ID_FILE;
-        private static string JPG_EXT = ".jpg";
-        private static string model = "Model-";
-
-        //FOR WORD DOCUMENT GENERATION INTEROP
-        private static object nullObj = System.Reflection.Missing.Value;
-
-        private static string PDF_EXT = ".pdf";
-        private static int qrSise = 2;
-        private static object roObj = true;
-
-        // private const string slash = "\\";
-        private static char SEP = '-';
-
-        private static char SEP2 = ',';
-        private static string WORD_EXT = ".docx";
-        private static string WORD_TEMPLATE = "WordDoc";
-        private static string EXAMS_FOLDER = "Exams";
-
-        private const string SLASH = "\\";
-    }
-
-    public partial class Generator
-    {
-        public void FillAYear()
-        {
-            // this.inter.IdB.StuList.Clear();
-
-            DB.TAM.AYearTableAdapter.Fill(this.inter.IdB.AYear);
-
-            // this.inter.IdB.Student.Clear();
-
-            // DB.TAM.StudentTableAdapter.Fill(this.inter.IdB.Student);
-        }
-
-        private string ExasmPath;
+        private string examsPath;
         private Interface inter;
 
         private string logoFile;
 
         private string templateFile;
-
-        public void MakeList(string pathway, string classe, int ayearID)
-        {
-            string[] lines = System.IO.File.ReadAllLines(pathway);
-
-            foreach (var item in lines)
-            {
-                StuListRow s = inter.IdB.StuList.NewStuListRow();
-                string[] members = item.Split(',');
-                s.StudentID = members[0];
-                s.LastNames = members[1];
-                s.FirstNames = members[2];
-                s.Class = classe;
-
-                s.Date = DateTime.Now;
-                s.Year = s.Date.Year;
-                s.AYearID = ayearID;
-                inter.IdB.StuList.AddStuListRow(s);
-            }
-            TAM.StuListTableAdapter.Update(inter.IdB.StuList);
-        }
 
         public void CleanOrphans()
         {
@@ -501,7 +46,7 @@ namespace Exam
         /// <param name="qID"> </param>
         /// <param name="answ"></param>
         /// <returns></returns>
-        public string CreateExamQuestionCode(int qID, ref IEnumerable<AnswersRow> answ)
+        public string CreateExamQuestionCode(ref IEnumerable<AnswersRow> answ)
         {
             string aid = string.Empty;
             ///MAKE ORDERS, which contain the string of answersID in the order of the exam, for each questionID selected
@@ -510,10 +55,8 @@ namespace Exam
 
             foreach (AnswersRow a in answ)
             {
-                OrderRow or = inter.IdB.Order.NewOrderRow();
-                inter.IdB.Order.AddOrderRow(or);
-                or.QID = qID; //questionID
-                or.AID = a.AID; //answerID
+                // OrderRow or = inter.IdB.Order.NewOrderRow(); inter.IdB.Order.AddOrderRow(or);
+                // or.QID = qID; //questionID or.AID = a.AID; //answerID
                 if (!a.IsCorrectNull() && a.Correct == true) aid = a.AID.ToString();
                 code += a.AID.ToString() + SEP.ToString();
             }
@@ -531,7 +74,7 @@ namespace Exam
 
         public void DeleteExamsFiles()
         {
-            IEnumerable<string> files = System.IO.Directory.GetFiles(ExasmPath);
+            IEnumerable<string> files = System.IO.Directory.GetFiles(examsPath);
             foreach (string file in files)
             {
                 try
@@ -549,35 +92,21 @@ namespace Exam
 
         public void DoExams()
         {
-            // DataRow row = (inter.IBS.Preferences.Current as DataRowView).Row;
 
-            // DB.TAM.PreferencesTableAdapter.Update(inter.IdB.Preferences);
+
 
             PreferencesRow p = inter.IBS.CurrentPreference;
-            p.EndEdit();
-
-            // p.Class = materiaBox.Text;
-            p.DateTime = DateTime.Now;
-            // p.AYearID = ayearID;
-            p.Year = p.DateTime.Year;
-
-            DB.TAM.PreferencesTableAdapter.Update(p);
 
             inter.IBS.Working = true;
 
-            PreferencesRow clone = Tables.CloneARow(inter.IdB.Preferences, p) as DB.PreferencesRow;
-            p = clone;
-            p.Done = true;
-
-            DB.TAM.PreferencesTableAdapter.Update(p);
+            updatePreferenceAndClone(ref p);
 
             inter.IBS.Working = false;
 
-            inter.IBS.LogPref.MoveFirst();
-
-            // inter.
+            inter.IBS.LogPref.Position = inter.IBS.LogPref.Find(inter.IdB.Preferences.PIDColumn.ColumnName, p.PID);
 
             inter.IBS.Working = true;
+
 
             inter.Status = "Empezando...";
 
@@ -592,75 +121,124 @@ namespace Exam
             for (mod = 0; mod < p.Models; mod++)
             {
                 inter.IdB.Exams.Clear();
-                inter.IdB.Order.Clear();
 
                 inter.ProgressHandler?.Invoke(0, EventArgs.Empty);
 
                 ExamsListRow ls = doOneExam(ref p);
+                if (ls == null)
+                {
+
+                    continue;
+                }
 
                 inter.ProgressHandler?.Invoke(0, EventArgs.Empty);
 
-                // Application.DoEvents();
+                Generator.FindFactor(ref p, ref ls);
 
-                ExamsRow[] arr = ls.GetExamsRows();
-                double sumPoint = arr.Sum(o => o.QuestionsRow.Weight);
-                double factor = Convert.ToDouble(p.Points);
-                factor /= (sumPoint);
-                p.Factor = factor;
-                arr = null;
-
-                // Application.DoEvents();
-
-                IList<string[]> questionAnswer;
 
                 ////ENCRIPTAMIENTOOOOOOO
-                inter.Status = "Procesando...";
+                inter.Status = "Procesando examen...";
 
-                doOneEncriptExam(ref p, ref ls, out questionAnswer);
+                IList<string[]> questionAnswer;
+                doOneEncriptExam(ref p, ref ls, out questionAnswer, inter.Password);
+                //SAVE COPY OF TABLE in EXAMLIST
+
+                Generator.MakeTableBytes(ref ls, examsPath);
+
+                DB.TAM.ExamsListTableAdapter.Update(inter.IdB.ExamsList);
 
                 inter.ProgressHandler?.Invoke(0, EventArgs.Empty);
-
                 inter.Status = Resources.Creando + "el examen " + ls.GUID;
 
                 doOneDocExam(ref p, ref ls, ref questionAnswer);
 
                 inter.Status = "Examen generado";
-
-                // Application.DoEvents();
                 inter.ProgressHandler?.Invoke(0, EventArgs.Empty);
 
-                // Application.DoEvents();
             }
 
-            MakeTableBytes(ref p, ExasmPath);
+            Generator.MakeTableBytes(ref p, examsPath);
 
-            inter.Status = p.Models + " Modelos generados";
-            // Application.DoEvents();
-
-            // pClone.Done = false;
+            int count = p.GetExamsListRows().Count();
+            if (count != 0) inter.Status = count + " Modelos generados";
 
             DB.TAM.PreferencesTableAdapter.Update(p);
 
-            inter.IdB.Order.Clear();
+
             inter.IdB.Exams.Clear();
 
             inter.IBS.Working = false;
         }
+
+        private static void updatePreferenceAndClone(ref PreferencesRow p)
+        {
+            // p.EndEdit();
+            // p.Class = materiaBox.Text;
+            p.DateTime = DateTime.Now;
+            // p.AYearID = ayearID;
+            p.Year = p.DateTime.Year;
+
+            DB.TAM.PreferencesTableAdapter.Update(p);
+            PreferencesRow clone = Tables.CloneARow(p.Table, p) as DB.PreferencesRow;
+            p = clone;
+            p.Done = true;
+            DB.TAM.PreferencesTableAdapter.Update(p);
+        
+        }
+
 
         public void FillClassDataBase(string clase)
         {
             clearQA();
 
             if (clase.CompareTo(string.Empty) == 0) return;
+
+            ClassRow c = inter.IdB.Class.FirstOrDefault(o => o.Class.CompareTo(clase) == 0);
+
+            if (c == null) return;
+
             string[] connection = DB.TAMQA.AnswersTableAdapter.Connection.ConnectionString.Split(';');
 
-            string newConnection = "Initial Catalog=" + clase + ";";
+            string newDB = "Initial Catalog=" + c.DB + ";";
+            string newsrv = "Data Source=" + c.Server + ";";
+            string total = newsrv + newDB + connection[2];
 
-            string total = connection[0] + ";" + newConnection + connection[2];
-            DB.TAMQA.AnswersTableAdapter.Connection.ConnectionString = total;
+            DB.TAMQA.Connection.ConnectionString = total;
             DB.TAMQA.QuestionsTableAdapter.Connection.ConnectionString = total;
+            DB.TAMQA.AnswersTableAdapter.Connection.ConnectionString = total;
+            DB.TAMQA.TopicsTableAdapter.Connection.ConnectionString = total;
 
             fillQA();
+        }
+
+        public void FillClassDataBaseOld(string clase)
+        {
+            clearQA();
+
+            if (clase.CompareTo(string.Empty) == 0) return;
+
+            ClassRow[] clases = inter.IdB.Class.Where(o => o.Class.CompareTo(clase) == 0).ToArray();
+
+            if (clases.Count() == 0) return;
+
+            foreach (ClassRow c in clases)
+            {
+                string[] connection = DB.TAMQA.AnswersTableAdapter.Connection.ConnectionString.Split(';');
+
+                string newDB = "Initial Catalog=" + c.DB + ";";
+                string newsrv = "Data Source=" + c.Server + ";";
+                string total = newsrv + newDB + connection[2];
+                // DB.TAMQA.AnswersTableAdapter.Connection.ConnectionString = total;
+                // DB.TAMQA.QuestionsTableAdapter.Connection.ConnectionString = total;
+                // DB.TAMQA.TopicsTableAdapter.Connection.ConnectionString = total;
+                DB.TAMQA.Connection.ConnectionString = total;
+                fillQA();
+            }
+        }
+
+        public void FillExams(string classe)
+        {
+            DB.TAM.ExamsListTableAdapter.FillByClass(this.inter.IdB.ExamsList, classe);
         }
 
         public void FillStudents(string clase, string year, string Ayear)
@@ -678,18 +256,6 @@ namespace Exam
             DB.TAM.StudentTableAdapter.FillByClass(this.inter.IdB.Student, clase);
         }
 
-        public void FillClasses()
-        {
-            DB.TAM.ClassTableAdapter.Fill(this.inter.IdB.Class);
-        }
-
-        public void FillPreferences()
-        {
-            // this.inter.IdB.Preferences.Clear();
-            DB.TAM.PreferencesTableAdapter.Fill(this.inter.IdB.Preferences);
-            this.inter.IdB.Preferences.AcceptChanges();
-        }
-
         /// <summary>
         /// GEnerates a virtual database
         /// </summary>
@@ -697,12 +263,16 @@ namespace Exam
         {
             int j = 1;
 
+            int? topicID = inter.IBS.CurrentTopic?.TopicID;
+
             for (int i = 0; i < questions; i++)
             {
                 if (j == 6) j = 1;
                 QuestionsRow q = inter.IdB.Questions.NewQuestionsRow();
                 q.Weight = j;
                 inter.IdB.Questions.AddQuestionsRow(q);
+                if (topicID != null) q.TopicID = (int)topicID;
+
                 DB.TAMQA.QuestionsTableAdapter.Update(q);
 
                 q.Question = "Pregunta número " + q.QID.ToString();
@@ -772,108 +342,131 @@ namespace Exam
             // stu.EID = ls.EID;
         }
 
+        public void MakeList(string pathway, string classe, int ayearID)
+        {
+            string[] lines = System.IO.File.ReadAllLines(pathway);
+
+            foreach (var item in lines)
+            {
+                StuListRow s = inter.IdB.StuList.NewStuListRow();
+                string[] members = item.Split(',');
+                s.StudentID = members[0];
+                s.LastNames = members[1];
+                s.FirstNames = members[3];
+                s.Class = classe;
+                s.Evaluated = 0;
+                s.Done = false;
+
+                s.Date = DateTime.Now;
+                s.Year = s.Date.Year;
+                s.AYearID = ayearID;
+                inter.IdB.StuList.AddStuListRow(s);
+            }
+            TAM.StuListTableAdapter.Update(inter.IdB.StuList);
+        }
         public void OpenFile()
         {
             try
             {
-                string destFile = ExasmPath + model + inter.IBS.CurrentExam.GUID + PDF_EXT; //ok
+                DB.ExamsListRow erow = inter.IBS.CurrentExam;
 
-                if (!inter.IBS.CurrentExam.IsExamFileNull())
-                {
-                    byte[] arr = inter.IBS.CurrentExam.ExamFile;
-                    IO.WriteFileBytes(ref arr, destFile);
-                }
+                string destFile = model + erow.GUID + PDF_EXT; //ok
 
-                IO.Process(new System.Diagnostics.Process(), ExasmPath, "explorer.exe", destFile, true, false, 10000);
+                if (erow.IsExamFileNull()) return;
+
+                byte[] arr = erow.ExamFile;
+
+                IO.OpenBytesFile(ref arr, destFile,examsPath);
+
+           
+
             }
             catch (Exception ex)
             {
                 inter.Status = "El Examen ya está abierto";
-                // StatusHandler?.Invoke(ex, EventArgs.Empty);
             }
+        }
+
+        public void PopulateBasic()
+        {
+            this.inter.IBS.Working = true;
+
+            DB.TAM.ClassTableAdapter.Fill(this.inter.IdB.Class);
+
+            // this.inter.IdB.StuList.Clear();
+
+            DB.TAM.AYearTableAdapter.Fill(this.inter.IdB.AYear);
+
+            // this.inter.IdB.Student.Clear();
+
+            // DB.TAM.StudentTableAdapter.Fill(this.inter.IdB.Student);
+
+            // this.inter.IdB.Preferences.Clear();
+            DB.TAM.PreferencesTableAdapter.Fill(this.inter.IdB.Preferences);
+            this.inter.IdB.Preferences.AcceptChanges();
+
+            this.inter.IBS.Working = false;
         }
 
         private void clearQA()
         {
-            inter.IdB.Questions.Clear();
             inter.IdB.Answers.Clear();
+            inter.IdB.Questions.Clear();
+            inter.IdB.Topics.Clear();
         }
 
         private void doOneDocExam(ref PreferencesRow p, ref ExamsListRow ls, ref IList<string[]> questionAnswer)
         {
-            ///MAKE WORD DOCUMENT
+  
+            string filepathAux = examsPath + model + ls.GUID;
 
             string CryptoGUID = Rsx.Encryption.AESThenHMAC.SimpleEncryptWithPassword(ls.GUID, inter.Password, null);
+     
+            //     string jpgQRCodeFile = filepathAux + JPG_EXT;
 
-            string filepathAux = ExasmPath + model + ls.GUID;
-            string jpgQRCodeFile = filepathAux + JPG_EXT;
             Image img = Tools.CreateQRCode(CryptoGUID, qrSise);
-            img.Save(jpgQRCodeFile);
+            img.Save(filepathAux + JPG_EXT);
+            img.Dispose();
 
-            string destFile = filepathAux + WORD_EXT;
+            //    string destFile = filepathAux + WORD_EXT;
 
-            File.Copy(templateFile, destFile);
+            ///MAKE WORD DOCUMENT
+            ///
+            File.Copy(templateFile, filepathAux + WORD_EXT);
 
-            W.Application w = new W.Application();
-            object dest = destFile as object;
+            string title = p.Title + " (" + p.Class + ")";
+            bool showAnswer = p.showAnswer;
+            string pass = inter.Password;
 
-            W.Document doc = w.Documents.Open(ref dest, ref nullObj, ref nullObj, ref nullObj, ref nullObj, ref nullObj, ref nullObj, ref nullObj, ref nullObj, ref nullObj, ref nullObj, ref roObj, ref nullObj, ref nullObj, ref nullObj, ref nullObj);
-
-            // doc._CodeName = p.Title;
-            string Intro = "Recorte el Cupón";
-            // W.Document doc = ExamMain.MakeWord(ref destFile, ref w); //makes the word file
-            MakeExamIntro(ref doc, jpgQRCodeFile, Intro, p.Title + " (" + p.Class + ")");
-            MakeExamCoupon(ref doc, jpgQRCodeFile, ref ls, p.showAnswer, inter.Password);
-
-            MakeExamFileBody(ref questionAnswer, ref doc);
-
-            Application.DoEvents();
-            //save word
-            doc.Save();
-
-            // string filepathAux = ExasmPath + model + ls.GUID;
-            string filePDF = filepathAux + PDF_EXT;
-            string filejpg = filepathAux + JPG_EXT;
+            object doc = Generator.MakeDOC(ref ls, ref questionAnswer, filepathAux, title, showAnswer, pass);
 
             inter.Status = Resources.ExamenCreado;
 
-            ///MAKE PDF
-            Tools.MakePDF(ref doc);
+            bool close = true;
+            bool quit = true;
+            Generator.MakePDF(ref doc,close,quit);
 
-            Application.DoEvents();
-
-            w.Documents.Close(ref roObj, ref nullObj, nullObj);
-            // Application.DoEvents();
-            w.Quit(ref nullObj, ref nullObj, ref nullObj);
+            Byte[] rtf = IO.ReadFileBytes(filepathAux + PDF_EXT);
+            ls.ExamFile = rtf; //salva una copia del archivo PDF en el servidor SQL
+            DB.TAM.ExamsListTableAdapter.Update(ls);
 
             inter.Status = Resources.ExamenCreadoPDF;
 
-            File.Delete(destFile);
-            File.Delete(filejpg);
 
-            Byte[] rtf = IO.ReadFileBytes(filePDF);
-            ls.ExamFile = rtf; //salva una copia del archivo PDF en el servidor SQL
-            DB.TAM.ExamsListTableAdapter.Update(ls);
-            File.Delete(filePDF);
+            File.Delete(filepathAux + PDF_EXT);
+
+            File.Delete(filepathAux + WORD_EXT);
+
+            File.Delete(filepathAux + JPG_EXT);
+
+
         }
 
-        private void doOneEncriptExam(ref PreferencesRow p, ref ExamsListRow ls, out IList<string[]> questionAnswer)
-        {
-            IEnumerable<DB.ExamsRow> join = ls.GetExamsRows();
-            string[] ClaveWQID = null;
+      
 
-            ClaveWQID = MakeQAs(ref join, ref p, out questionAnswer);
-            ls.LQuestion = ClaveWQID[1]; // question weight string
-            string LAnswer = ClaveWQID[0]; //clave verdadera sin encriptar
-            string QIDString = ClaveWQID[2]; //secuencia de preguntas, importante guardar
 
-            ls.CLAnswer = Rsx.Encryption.AESThenHMAC.SimpleEncryptWithPassword(LAnswer, inter.Password, null); //encripta
-            ls.CQIDString = Rsx.Encryption.AESThenHMAC.SimpleEncryptWithPassword(QIDString, inter.Password, null); //encripta
 
-            //SAVE COPY OF TABLE in EXAMLIST
-            MakeTableBytes(ref ls, ExasmPath);
-            DB.TAM.ExamsListTableAdapter.Update(inter.IdB.ExamsList);
-        }
+
 
         /// <summary>
         /// MAIN FILE FOR GENERATING AN EXAM
@@ -883,14 +476,23 @@ namespace Exam
         {
             inter.Status = Resources.Creando + inter.IdB.Questions.Count + Resources.PregAleatorias;
 
+            Func<DB.QuestionsRow, bool> selector = x =>
+            {
+                bool? ok = x.TopicsRow?.UseIt;
+                if (ok == null) ok = false;
+                return (bool)ok;
+            };
             ///RANDOMNIZE RAW QUESTIONS
-            IEnumerable<DB.QuestionsRow> questions = inter.IdB.Questions; //toma todas las preguntas
+            IEnumerable<DB.QuestionsRow> questions = inter.IdB.Questions.Where(selector).ToArray(); //toma todas las preguntas
 
-            questions = Tools.RandomizeStrings(questions); //1
-            Application.DoEvents();
-            questions = Tools.RandomizeStrings(questions); //2
-            Application.DoEvents();
-            questions = Tools.RandomizeStrings(questions); //3 times random
+            if (questions.Count() == 0)
+            {
+                inter.Status = "No hay preguntas seleccionadas";
+                return null;
+            }
+
+            int times = 3;
+            questions = Tools.RandomnizeStringsTimes(questions, times);
 
             IList<ExamsRow> exams = new List<ExamsRow>(); //todas las preguntas randomnizadas seran guardadas primero en esta lista
             foreach (QuestionsRow q in questions)
@@ -901,15 +503,13 @@ namespace Exam
             }
 
             inter.Status = Resources.Filtrando;
-            IEnumerable<ExamsRow> join = WeightThem(ref p, ref exams); //not re-ordered // preguntas seleccionadas y filtradas
+
+            IEnumerable<ExamsRow> join = weightThem(ref p, ref exams); //not re-ordered // preguntas seleccionadas y filtradas
             Application.DoEvents();
 
             inter.Status = Resources.OrderAleatorio; // de las preguntas del examen ya pesadas (filtradaS)
-            join = Tools.RandomizeStrings(join); //1
-            Application.DoEvents();
-            join = Tools.RandomizeStrings(join); //2
-            Application.DoEvents();
-            join = Tools.RandomizeStrings(join); //2
+
+            join = Tools.RandomnizeStringsTimes(join, times);
 
             inter.Status = Resources.Seleccionando + join.Count() + Resources.PregAleatorias;
             Application.DoEvents();
@@ -918,34 +518,22 @@ namespace Exam
             {
                 inter.IdB.Exams.AddExamsRow(ex); //agregalas a la tabla para salvarlas
 
-                IEnumerable<AnswersRow> answ = ex.QuestionsRow.GetAnswersRows();
+                DB.QuestionsRow q = ex.QuestionsRow;
+                IEnumerable<AnswersRow> answ = q.GetAnswersRows();
                 ///RANDOMIZE RAW ASWERS
-                answ = Tools.RandomizeStrings<AnswersRow>(answ); //1
-                answ = Tools.RandomizeStrings<AnswersRow>(answ);//2
-                answ = Tools.RandomizeStrings<AnswersRow>(answ); //3
-
+                answ = Tools.RandomnizeStringsTimes(answ, times);
                 //CREATE EXAM QUESTION CODE! AIDSTRING
-                string code = CreateExamQuestionCode(ex.QID, ref answ);
+                string code = CreateExamQuestionCode(ref answ);
                 ex.AIDString = code;
-
                 ExamsRow auxiliar = ex;
-                MakeTableBytes(ref auxiliar, ExasmPath);
+                MakeTableBytes(ref auxiliar, examsPath);
             }
+
             DB.TAM.ExamsTableAdapter.Update(inter.IdB.Exams);
             Application.DoEvents();
 
-            // WApp.Add(w);
-            Guid g = Guid.NewGuid();
-            ExamsListRow ls = inter.IdB.ExamsList.NewExamsListRow();
-            inter.IdB.ExamsList.AddExamsListRow(ls);
-            ls.PID = p.PID;
-            ////MAKES THE DOC FILE
-            ls.GUID = g.ToString().Replace("-", null);//.Split('-')[4];
-            ls.Time = DateTime.Now;
-            ls.Class = p.Class;
-
+            ExamsListRow ls = inter.IdB.AddExam(ref p);
             // Image img = Tools.CreateQRCode(ls.GUID, qrSizeDB); ls.QRCode = Tools.imageToByteArray(img);
-
             DB.TAM.ExamsListTableAdapter.Update(inter.IdB.ExamsList);
             Application.DoEvents();
             //este orden es importante
@@ -959,12 +547,57 @@ namespace Exam
 
         private void fillQA()
         {
+            DB.TAMQA.TopicsTableAdapter.Fill(inter.IdB.Topics);
             DB.TAMQA.AnswersTableAdapter.Fill(inter.IdB.Answers);
             DB.TAMQA.QuestionsTableAdapter.Fill(inter.IdB.Questions);
         }
 
+        private void fillQAOld()
+        {
+            DB clone;
+            bool cloned = false;
+
+            if (inter.IdB.Topics.Count == 0) clone = inter.IdB;
+            else
+            {
+                clone = new DB();
+                cloned = true;
+            }
+            DB.TAMQA.AnswersTableAdapter.Fill(clone.Answers);
+            DB.TAMQA.QuestionsTableAdapter.Fill(clone.Questions);
+            DB.TAMQA.TopicsTableAdapter.Fill(clone.Topics);
+
+            if (cloned)
+            {
+                foreach (var item in clone.Topics)
+                {
+                    inter.IdB.Topics.ImportRow(item);
+                }
+                DB.TAMQA.TopicsTableAdapter.Update(inter.IdB.Topics);
+                foreach (var item in clone.Questions)
+                {
+                    inter.IdB.Questions.ImportRow(item);
+
+                    DB.TAMQA.QuestionsTableAdapter.Update(inter.IdB.Questions);
+                    DB.QuestionsRow last = inter.IdB.Questions.Last();
+                    AnswersRow[] answers = item.GetAnswersRows();
+                    foreach (var a in answers)
+                    {
+                        inter.IdB.Answers.ImportRow(a);
+                        AnswersRow la = inter.IdB.Answers.Last();
+                        la.QID = last.QID;
+                    }
+
+                    DB.TAMQA.AnswersTableAdapter.Update(inter.IdB.Answers);
+                }
+            }
+            // DB.TAMQA.AnswersTableAdapter.Fill(inter.IdB.Answers);
+            // DB.TAMQA.QuestionsTableAdapter.Fill(inter.IdB.Questions); DB.TAMQA.TopicsTableAdapter.Fill(inter.IdB.Topics);
+        }
+
         private void updateQA()
         {
+            DB.TAMQA.TopicsTableAdapter.Update(inter.IdB.Topics);
             DB.TAMQA.QuestionsTableAdapter.Update(inter.IdB.Questions);
             DB.TAMQA.AnswersTableAdapter.Update(inter.IdB.Answers);
         }
@@ -972,15 +605,15 @@ namespace Exam
         public Generator(ref Interface interf)
         {
             inter = interf;
-            ExasmPath = inter.Path + SLASH + EXAMS_FOLDER + SLASH;
+            examsPath = inter.Path + SLASH + EXAMS_FOLDER + SLASH;
             ID_FILE = inter.Path + SLASH + "identification" + JPG_EXT;
 
             logoFile = inter.Path + SLASH + "logo" + JPG_EXT;
             templateFile = inter.Path + SLASH + WORD_TEMPLATE + WORD_EXT;
 
-            if (!Directory.Exists(ExasmPath))
+            if (!Directory.Exists(examsPath))
             {
-                Directory.CreateDirectory(ExasmPath);
+                Directory.CreateDirectory(examsPath);
             }
         }
     }

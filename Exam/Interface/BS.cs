@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Rsx.Dumb;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Exam
@@ -7,6 +10,12 @@ namespace Exam
     public class BS
     {
         private DB set;
+        private DB auxiliar;
+
+
+
+        public BindingSource RandomAnswers { get; private set; }
+        public BindingSource RandomQuestions { get; private set; }
 
         public BindingSource Answers { get; private set; }
         public BindingSource Topics { get; private set; }
@@ -56,7 +65,7 @@ namespace Exam
 
         public BindingSource LogPref { get; private set; }
 
-        public BindingSource Order { get; private set; }
+  //      public BindingSource Order { get; private set; }
 
         public BindingSource Preferences { get; private set; }
 
@@ -73,9 +82,50 @@ namespace Exam
             get;
             set;
         }
-
-        private void Exam_CurrentChanged(object sender, EventArgs e)
+        /*
+        public bool Working
         {
+          
+            set
+            {
+                if (!value)
+                {
+                    //    Exam.CurrentChanged += Exam_CurrentChanged;
+                    ExamsList.CurrentChanged += currentChanged;
+                    //     Student.CurrentChanged += Exam_CurrentChanged;
+                    StudentsList.CurrentChanged += currentChanged;
+                    Questions.CurrentChanged += currentChanged;
+                    //    Answers.CurrentChanged += Exam_CurrentChanged;
+                    //      Preferences.CurrentChanged += Exam_CurrentChanged;
+                    LogPref.CurrentChanged += currentChanged;
+                    //      Order.CurrentChanged += Exam_CurrentChanged;
+                    //     Class.CurrentChanged += Exam_CurrentChanged;
+                    //     AYear.CurrentChanged += Exam_CurrentChanged;
+
+                    Topics.CurrentChanged += currentChanged;
+                }
+                else
+                {
+                    //    Exam.CurrentChanged += Exam_CurrentChanged;
+                    ExamsList.CurrentChanged -= currentChanged;
+                    //     Student.CurrentChanged += Exam_CurrentChanged;
+                    StudentsList.CurrentChanged -= currentChanged;
+                    Questions.CurrentChanged -= currentChanged;
+                    //    Answers.CurrentChanged += Exam_CurrentChanged;
+                    //      Preferences.CurrentChanged += Exam_CurrentChanged;
+                    LogPref.CurrentChanged -= currentChanged;
+                    //      Order.CurrentChanged += Exam_CurrentChanged;
+                    //     Class.CurrentChanged += Exam_CurrentChanged;
+                    //     AYear.CurrentChanged += Exam_CurrentChanged;
+
+                    Topics.CurrentChanged -= currentChanged;
+                }
+            }
+        }
+        */
+        private void currentChanged(object sender, EventArgs e)
+        {
+
             if (Working) return;
 
             try
@@ -87,73 +137,56 @@ namespace Exam
                 DataRow row = view.Row;
                 if (row == null) return;
 
-                byte[] auxiliar = null;
+                //   byte[] auxiliar = null;
 
                 if (sender.Equals(this.Topics))
                 {
                     DB.TopicsRow r = row as DB.TopicsRow;
                     DB.QuestionsDataTable dt = set.Questions;
-                    Answers.Filter = dt.TopicIDColumn.ColumnName + " = " + r.TopicID;
+                    Questions.Filter = dt.TopicIDColumn.ColumnName + " = " + r.TopicID;
                 }
-                 else   if (sender.Equals(this.Questions))
+                else if (sender.Equals(this.Questions) )
                 {
                     DB.QuestionsRow r = row as DB.QuestionsRow;
-                    DB.AnswersDataTable dt = set.Answers;
-                    Answers.Filter = dt.QIDColumn.ColumnName + " = " + r.QID;
+                    string dt =set.Answers.QIDColumn.ColumnName;
+                    Answers.Filter = dt + " = " + r.QID;
+                }
+                else if ( sender.Equals(this.RandomQuestions))
+                {
+                    DB.QuestionsRow r = row as DB.QuestionsRow;
+                    string dt = auxiliar.Answers.QIDColumn.ColumnName;
+                    RandomAnswers.Filter = dt + " = " + r.QID;
                 }
                 else if (sender.Equals(this.Exam))
                 {
-                    /*
+                    string dt = auxiliar.Questions.QIDColumn.ColumnName;
                     DB.ExamsRow r = row as DB.ExamsRow;
+                    //        string[] aux  = r.AIDString.Split(',');
+                    RandomQuestions.Position= RandomQuestions.Find(dt, r.QID);
+                    Questions.Position = Questions.Find(dt, r.QID);
 
-                    if (!r.IsADataNull())
-                    {
-                        string aid = this.ExasmPath + r.ID.ToString() + ".xml";
-                        auxiliar = r.AData;
+                 
+                }
+                else if (sender.Equals(this.StudentsList))
+                {
+                    DB.StuListRow r = row as DB.StuListRow;
+                    DB.StudentDataTable dt = set.Student;
+                    Student.Filter = dt.EIDColumn.ColumnName + " = " + r.SLID;
+              
+                    //     DB.TAM.ExamsTableAdapter.FillByEID(dt, r.EID);
 
-                        DB.AnswersDataTable dt = new DB.AnswersDataTable();
-
-                        Dumb.ReadDTBytes(aid, ref auxiliar, ref dt);
-
-                        DataSet  set = new DataSet();
-
-                        set.Tables.Add(dt);
-                        Explorer explorer = new Explorer(ref set);
-                        Form f = new Form();
-                        f.Controls.Add(explorer);
-                        f.Show();
-                    }
-                    else
-                    {
-                        //DB.TAM.ExamsTableAdapter.FillByEID(dt, r.EID);
-                     //   MakeTableBytes(ref r);
-                    }
-                     *
-                     */
                 }
                 else if (sender.Equals(this.ExamsList))
                 {
                     DB.ExamsListRow r = row as DB.ExamsListRow;
-                    DB.ExamsDataTable dt = set.Exams;
-                    Exam.Filter = dt.EIDColumn.ColumnName + " = " + r.EID;
+                    //     DB.ExamsDataTable dt = set.Exams;
+                    Exam.Filter = auxiliar.Exams.EIDColumn.ColumnName + " = " + r.EID;
+                    Working = true;
+                    auxiliar.PopulateExamQuestions(ref r);
+                    Working = false;
+                    Exam.MoveFirst();
+            
 
-                    DB.TAM.ExamsTableAdapter.FillByEID(dt, r.EID);
-
-                    /*
-                    //now find the examsTablewith questions and answers for the EXAM (list)
-                   if (!r.IsEDataNull())
-                    {
-                      // string eid = ExasmPath + r.EID.ToString() + ".xml";
-                        auxiliar = r.EData;
-
-                        Tables.ReadDTBytes(ExasmPath, ref auxiliar, ref dt);
-                    }
-                    else
-                    {
-                        DB.TAM.ExamsTableAdapter.FillByEID(dt, r.EID);
-                        // MakeTableBytes(ref r);
-                    }
-                   */
                 }
                 else if (sender.Equals(this.LogPref))
                 {
@@ -183,44 +216,97 @@ namespace Exam
             }
         }
 
+      
+
+        public void EndEdit()
+        {
+
+            foreach (var item in ls)
+            {
+                item.EndEdit();
+            }
+
+        }
+
         private string asc = " asc";
         private string desc = " desc";
 
+
+        private List<BindingSource> ls;
+
         public BS(ref DB dataset)
         {
-            Working = false;
+        
 
             set = dataset;
+            auxiliar = dataset.Clone() as DB;
 
-            Exam = new BindingSource(set, set.Exams.TableName);
+            ls = new List<BindingSource>();
+
+         
             ExamsList = new BindingSource(set, set.ExamsList.TableName);
             Student = new BindingSource(set, set.Student.TableName);
             StudentsList = new BindingSource(set, set.StuList.TableName);
             Questions = new BindingSource(set, set.Questions.TableName);
             Answers = new BindingSource(set, set.Answers.TableName);
+
+            Exam = new BindingSource(auxiliar, auxiliar.Exams.TableName);
+            RandomQuestions = new BindingSource(auxiliar, auxiliar.Questions.TableName);
+            RandomAnswers = new BindingSource(auxiliar, auxiliar.Answers.TableName);
+
             Preferences = new BindingSource(set, set.Preferences.TableName);
             LogPref = new BindingSource(set, set.Preferences.TableName);
-            Order = new BindingSource(set, set.Order.TableName);
+   
             Class = new BindingSource(set, set.Class.TableName);
             AYear = new BindingSource(set, set.AYear.TableName);
 
             Topics = new BindingSource(set, set.Topics.TableName);
 
+            //    Order = new BindingSource(set, set.Order.TableName);
 
-            Exam.CurrentChanged += Exam_CurrentChanged;
-            ExamsList.CurrentChanged += Exam_CurrentChanged;
-            Student.CurrentChanged += Exam_CurrentChanged;
-            StudentsList.CurrentChanged += Exam_CurrentChanged;
-            Questions.CurrentChanged += Exam_CurrentChanged;
-            Answers.CurrentChanged += Exam_CurrentChanged;
-            Preferences.CurrentChanged += Exam_CurrentChanged;
-            LogPref.CurrentChanged += Exam_CurrentChanged;
-            Order.CurrentChanged += Exam_CurrentChanged;
-            Class.CurrentChanged += Exam_CurrentChanged;
-            AYear.CurrentChanged += Exam_CurrentChanged;
+            ls.Add(Exam);
+            ls.Add(ExamsList);
+            ls.Add(Student);
+            ls.Add(StudentsList);
+            ls.Add(Questions);
+            ls.Add(Answers);
+            ls.Add(RandomQuestions);
+            ls.Add(RandomAnswers);
+            ls.Add(Topics);
+            ls.Add(LogPref);
+            ls.Add(Preferences);
+            ls.Add(Class);
+            ls.Add(AYear);
 
-            Topics.CurrentChanged += Exam_CurrentChanged;
 
+            Working = false;
+
+                Exam.CurrentChanged += currentChanged;
+            ExamsList.CurrentChanged += currentChanged;
+            //     Student.CurrentChanged += Exam_CurrentChanged;
+            StudentsList.CurrentChanged += currentChanged;
+            RandomQuestions.CurrentChanged += currentChanged;
+            Questions.CurrentChanged += currentChanged;
+            //    Answers.CurrentChanged += Exam_CurrentChanged;
+            //      Preferences.CurrentChanged += Exam_CurrentChanged;
+            LogPref.CurrentChanged += currentChanged;
+            //      Order.CurrentChanged += Exam_CurrentChanged;
+            //     Class.CurrentChanged += Exam_CurrentChanged;
+            //     AYear.CurrentChanged += Exam_CurrentChanged;
+
+            Topics.CurrentChanged += currentChanged;
+
+
+            setFilters();
+
+
+
+         
+
+        }
+
+        private void setFilters()
+        {
 
             // preferences is done=FALSE as we want to create
             Preferences.Filter = set.Preferences.DoneColumn.ColumnName + " = false";
@@ -236,7 +322,9 @@ namespace Exam
             this.Exam.Sort = set.Exams.IDColumn.ColumnName + asc;
             this.Answers.Sort = set.Answers.CorrectColumn.ColumnName + asc;
             this.Questions.Sort = set.Questions.QIDColumn.ColumnName + asc;
-            this.Order.Sort = set.Order.IDColumn.ColumnName + asc;
+            this.RandomAnswers.Sort = string.Empty;
+            this.RandomQuestions.Sort = string.Empty;
+            //    this.Order.Sort = set.Order.IDColumn.ColumnName + asc;
         }
     }
 }

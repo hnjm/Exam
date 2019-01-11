@@ -95,11 +95,35 @@
     <Compile Include="Ctrl.Designer.cs">
       <DependentUpon>Ctrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\Generator.Static.cs" />
+    <Compile Include="ucDataBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucDataBase.Designer.cs">
+      <DependentUpon>ucDataBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucTopic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucTopic.Designer.cs">
+      <DependentUpon>ucTopic.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucGenerator.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucGenerator.Designer.cs">
       <DependentUpon>ucGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucValidator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucValidator.Designer.cs">
+      <DependentUpon>ucValidator.cs</DependentUpon>
     </Compile>
     <Compile Include="ValidFrm.cs">
       <SubType>Form</SubType>
@@ -111,12 +135,7 @@
     <Compile Include="DB.cs">
       <DependentUpon>DB.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DB.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Interface\Exam.Tools.cs" />
+    <Compile Include="Interface\Tools.cs" />
     <Compile Include="ExamFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,8 +149,17 @@
     <EmbeddedResource Include="Ctrl.resx">
       <DependentUpon>Ctrl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucDataBase.resx">
+      <DependentUpon>ucDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucTopic.resx">
+      <DependentUpon>ucTopic.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucGenerator.resx">
       <DependentUpon>ucGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucValidator.resx">
+      <DependentUpon>ucValidator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ValidFrm.resx">
       <DependentUpon>ValidFrm.cs</DependentUpon>

@@ -41,17 +41,17 @@ namespace Exam
         {
             this.currentStudent = null;
 
-            string valu = old;
+            string carne = old;
 
-            Tools.StripAnswer(ref valu);
-            if (valu.CompareTo(old) != 0)
+            Tools.StripAnswer(ref carne);
+            if (carne.CompareTo(old) != 0)
             {
-                return valu;
+                return carne;
             }
 
-            if (string.IsNullOrEmpty(valu)) return old;
+            if (string.IsNullOrEmpty(carne)) return old;
 
-            if (string.IsNullOrWhiteSpace(valu)) return old;
+            if (string.IsNullOrWhiteSpace(carne)) return old;
 
             // old = valu;
 
@@ -61,21 +61,21 @@ namespace Exam
             {
                 // inter.IdB.Student.Clear();
 
-                DataRow stu = inter.IdB.StuList.FirstOrDefault(o => o.StudentID.CompareTo(valu) == 0);
+                DB.StuListRow stu = inter.IdB.StuList.FirstOrDefault(o => o.StudentID.CompareTo(carne) == 0);
                 if (stu == null)
                 {
                     inter.Status = Resources.NoEnListas;
-                    return valu;
+                    return carne;
                 }
-
+                inter.IBS.StudentsList.Position =   inter.IBS.StudentsList.Find(inter.IdB.StuList.SLIDColumn.ColumnName, stu.SLID);
                 //fill students table with all exams from the student! all classes materias
-                DB.TAM.StudentTableAdapter.FillByStudentID(inter.IdB.Student, valu);
+                DB.TAM.StudentTableAdapter.FillByStudentID(inter.IdB.Student, carne);
 
                 //esto es bien????????
                 currentStudent = new DB.StudentDataTable().NewStudentRow(); //crea un objeto nuevo para guardar info
                                                                             //pero no lo guardes en la tabla
                                                                             //   Tools.StripAnswer(ref )
-                currentStudent.StudentID = valu;
+                currentStudent.StudentID = carne;
                 //NEEDS CLASS MATERIA TO BE COMPLETE
                 // currentStudent = stu; //yes, but do not add to the table yet
 
@@ -97,7 +97,7 @@ namespace Exam
                 setStatusException(ref ex);
             }
 
-            return valu;
+            return carne;
         }
 
         public void GetScannedData(string scanned, ref string stuID, ref string answerRAW)
@@ -169,6 +169,7 @@ namespace Exam
                 bool answerOk = validateAnswer(currentStudent.LProvided);
                 if (!answerOk)
                 {
+                    //cuando no mide lo mismo deberia rellenar con 0s
                     inter.Status = Resources.NoEvaluableRespuesta;
                     return false;
                 }
@@ -214,8 +215,8 @@ namespace Exam
 
                 diffExams = differentExams();
 
-                int minutesInDay = (24 * 60);
-                int mLE = 5 * minutesInDay; // minutes LAST EVALUATION STUDENT = 5 days
+              //  int minutesInDay = (24 * 60);
+                int mLE = 10; // seconds LAST EVALUATION STUDENT = 5 days
 
                 if (diffExams.Count() != 0)
                 {
@@ -493,7 +494,7 @@ namespace Exam
             {
                 if (o.IsDatePresentedNull()) return false;
 
-                double minutesSince = ahora.Subtract(o.DatePresented).TotalMinutes;
+                double minutesSince = ahora.Subtract(o.DatePresented).TotalSeconds;
                 if (minutesSince < mLE) return true;
                 return false;
             };

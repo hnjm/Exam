@@ -64,5 +64,13 @@ namespace Exam
             IGenerator = new Generator(ref reference);
             IValidator = new Validator(ref reference);
         }
+
+        public void Save()
+        {
+            IBS.EndEdit();
+
+            DB.TAMQA.UpdateAll(IdB);
+            DB.TAM.UpdateAll(IdB);
+        }
     }
 }
