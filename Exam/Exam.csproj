@@ -119,18 +119,24 @@
     <Compile Include="ucGenerator.Designer.cs">
       <DependentUpon>ucGenerator.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucValidatorSub.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucValidatorSub.Designer.cs">
+      <DependentUpon>ucValidatorSub.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucValidator.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucValidator.Designer.cs">
       <DependentUpon>ucValidator.cs</DependentUpon>
     </Compile>
-    <Compile Include="ValidFrm.cs">
+    <None Include="ValidFrm.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ValidFrm.Designer.cs">
+    </None>
+    <None Include="ValidFrm.Designer.cs">
       <DependentUpon>ValidFrm.cs</DependentUpon>
-    </Compile>
+    </None>
     <Compile Include="Interface\BS.cs" />
     <Compile Include="DB.cs">
       <DependentUpon>DB.xsd</DependentUpon>
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucGenerator.resx">
       <DependentUpon>ucGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucValidatorSub.resx">
+      <DependentUpon>ucValidatorSub.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucValidator.resx">
       <DependentUpon>ucValidator.cs</DependentUpon>

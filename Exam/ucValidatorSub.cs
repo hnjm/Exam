@@ -3,20 +3,23 @@ using System.Windows.Forms;
 
 namespace Exam
 {
-    public partial class ucValidator : UserControl
+    public partial class ucValidatorSub : UserControl
     {
-        private delegate void UpdateControls();
-
+     
         private Interface Interface;
 
-        string scanResult;
+        public string ScanResult
+        {
+            get;
+            set;
+        }
 
 
-        private void associateExamOrStudent() //tiene que ser toda una funcion
+        public void AssociateExamOrStudent() //tiene que ser toda una funcion
         {
          
      
-            if (string.IsNullOrEmpty(scanResult))
+            if (string.IsNullOrEmpty(ScanResult))
             {
                 Interface.Status = "Texto escaneado vacío";
                 return;
@@ -24,15 +27,15 @@ namespace Exam
 
        
 
-            bool isStuAnsw = Interface.IValidator.IsStudentScanned(scanResult);
+            bool isStuAnsw = Interface.IValidator.IsStudentScanned(ScanResult);
 
             if (isStuAnsw) //but if it was scanned as a StuID and Answer...
             {
                 string answerRAW = string.Empty; //answer already in the box (typed manually)
                 string stuID = string.Empty; //use as default the carnebox Text
 
-                Interface.IValidator.GetScannedData(scanResult, ref stuID, ref answerRAW);
-                scanResult = string.Empty; //IMPORTANTISIMO RESETEA LA VARIABLE GLOBAL!!! UNA VEZ ACEPTADO EL CARNET*RESPUESTA
+                Interface.IValidator.GetScannedData(ScanResult, ref stuID, ref answerRAW);
+                ScanResult = string.Empty; //IMPORTANTISIMO RESETEA LA VARIABLE GLOBAL!!! UNA VEZ ACEPTADO EL CARNET*RESPUESTA
 
                 refreshStuIDAndAnswer(answerRAW, stuID);
 
@@ -44,8 +47,8 @@ namespace Exam
             {
                 //this.picBox.Image = null;
 
-                bool valid = Interface.IValidator.AssignExamModel(scanResult);
-                if (valid) scanResult = string.Empty; //IMPORTANTISIMO RESETEA LA VARIABLE GLOBAL!!! UNA VEZ ENCONTRADO EL EXAMEN
+                bool valid = Interface.IValidator.AssignExamModel(ScanResult);
+                if (valid) ScanResult = string.Empty; //IMPORTANTISIMO RESETEA LA VARIABLE GLOBAL!!! UNA VEZ ENCONTRADO EL EXAMEN
                 else return; //el codigo QR está siendo mandando por partes!!!
             }
 
@@ -83,23 +86,7 @@ namespace Exam
             this.verBox.Text = answerRAW;
         }
 
-        private void scannerDataReceived(object sender, EventArgs e)
-        {
-
-            scanResult = this.ucScan.Result; //sumale por si manda el codigo QR en 2 partes
-            scanResult.Trim();
-
-            Interface.Status = ucScan.Status; //no se si funcionaria
-
-            if (this.InvokeRequired)
-            {
-                UpdateControls delegado = new UpdateControls(associateExamOrStudent);
-                this.BeginInvoke(delegado);
-
-                // AssociateExamToStudent();
-            }
-            else associateExamOrStudent();
-        }
+     
 
         private void setBindings()
         {
@@ -120,14 +107,7 @@ namespace Exam
             Binding Classe = new Binding(txt, Interface.IBS.Preferences, Interface.IdB.Preferences.ClassColumn.ColumnName, true, mode);
         }
 
-        private void setDGVs()
-        {
-            this.studentDataGridView.DataSource = Interface.IBS.Student;
-            this.stuListDGV.DataSource = Interface.IBS.StudentsList;
-
-            this.studentBS.Dispose();
-            this.stuListBS.Dispose();
-        }
+     
 
         /// <summary>
         /// VALIDACION DE LOS RESULTADOS DE UN ALUMNO
@@ -156,20 +136,16 @@ namespace Exam
 
         public void Set(ref Interface inter)
         {
-            Rsx.Dumb.Dumb.FD(ref dB);
+          //  Rsx.Dumb.Dumb.FD(ref dB);
 
             Interface = inter;
 
-            setDGVs();
-
             setBindings();
 
-            this.ucScan.CallBack = this.scannerDataReceived;
-            this.ucScan.Listen();
-
+          
         }
 
-        public ucValidator()
+        public ucValidatorSub()
         {
             InitializeComponent();
            

@@ -181,9 +181,9 @@
             this.nameBox = new System.Windows.Forms.ToolStripTextBox();
             this.surnamelbl = new System.Windows.Forms.ToolStripLabel();
             this.surnameBox = new System.Windows.Forms.ToolStripTextBox();
-            this.ucScan = new VTools.ucScanner();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.ucScan = new VTools.ucScanner();
             this.tableLayoutPanel4.SuspendLayout();
             this.toolStrip5.SuspendLayout();
             this.toolStrip4.SuspendLayout();
@@ -648,24 +648,6 @@
             this.surnameBox.Size = new System.Drawing.Size(400, 68);
             this.surnameBox.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // ucScan
-            // 
-            this.ucScan.BaudRate = 9600;
-            this.ucScan.ComPort = "4";
-            this.ucScan.DataBits = 8;
-            this.ucScan.DelayTimeFile = 500;
-            this.ucScan.DelayTimeMsg = 50;
-            this.ucScan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucScan.Location = new System.Drawing.Point(216, 680);
-            this.ucScan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucScan.MaxLength = 8;
-            this.ucScan.Name = "ucScan";
-            this.ucScan.Result = "";
-            this.ucScan.SendContent = null;
-            this.ucScan.Size = new System.Drawing.Size(1074, 55);
-            this.ucScan.Status = "";
-            this.ucScan.TabIndex = 5;
-            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
@@ -677,6 +659,24 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(86, 56);
             this.toolStripLabel1.Text = "toolStripLabel1";
             // 
+            // ucScan
+            // 
+            this.ucScan.BaudRate = 9600;
+            this.ucScan.ComPort = "8";
+            this.ucScan.DataBits = 8;
+            this.ucScan.DelayTimeFile = 500;
+            this.ucScan.DelayTimeMsg = 50;
+            this.ucScan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucScan.Location = new System.Drawing.Point(216, 680);
+            this.ucScan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucScan.MaxLength = 8;
+            this.ucScan.Name = "ucScan";
+            this.ucScan.Result = "";
+            this.ucScan.SendContent = null;
+            this.ucScan.Size = new System.Drawing.Size(1074, 55);
+            this.ucScan.Status = "Connection OPENED";
+            this.ucScan.TabIndex = 5;
+            // 
             // ucValidator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -687,7 +687,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ucValidator";
             this.Size = new System.Drawing.Size(1294, 740);
-            //this.Load += new System.EventHandler(this.form_Load);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.toolStrip5.ResumeLayout(false);

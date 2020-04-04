@@ -35,19 +35,19 @@
             this.ucDataBase1 = new Exam.ucDataBase();
             this.EvalTab = new System.Windows.Forms.TabPage();
             this.ucValidator1 = new Exam.ucValidator();
+            this.ExamTab = new System.Windows.Forms.TabPage();
+            this.ucExamGUI = new Exam.ucDataBase();
             this.TLP = new System.Windows.Forms.TableLayoutPanel();
             this.ctrl1 = new Exam.Ctrl();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.ExamTab = new System.Windows.Forms.TabPage();
-            this.ucExamGUI = new Exam.ucDataBase();
             this.tab.SuspendLayout();
             this.prefTab.SuspendLayout();
             this.dbTab.SuspendLayout();
             this.EvalTab.SuspendLayout();
-            this.TLP.SuspendLayout();
             this.ExamTab.SuspendLayout();
+            this.TLP.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab
@@ -136,6 +136,29 @@
             this.ucValidator1.Size = new System.Drawing.Size(1280, 610);
             this.ucValidator1.TabIndex = 0;
             // 
+            // ExamTab
+            // 
+            this.ExamTab.Controls.Add(this.ucExamGUI);
+            this.ExamTab.Location = new System.Drawing.Point(4, 33);
+            this.ExamTab.Name = "ExamTab";
+            this.ExamTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ExamTab.Size = new System.Drawing.Size(1280, 610);
+            this.ExamTab.TabIndex = 4;
+            this.ExamTab.Text = "Examen GUI";
+            this.ExamTab.UseVisualStyleBackColor = true;
+            // 
+            // ucExamGUI
+            // 
+            this.ucExamGUI.BackColor = System.Drawing.Color.Gray;
+            this.ucExamGUI.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucExamGUI.ExamGUI = true;
+            this.ucExamGUI.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucExamGUI.Location = new System.Drawing.Point(3, 3);
+            this.ucExamGUI.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ucExamGUI.Name = "ucExamGUI";
+            this.ucExamGUI.Size = new System.Drawing.Size(1274, 604);
+            this.ucExamGUI.TabIndex = 1;
+            // 
             // TLP
             // 
             this.TLP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -184,29 +207,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // ExamTab
-            // 
-            this.ExamTab.Controls.Add(this.ucExamGUI);
-            this.ExamTab.Location = new System.Drawing.Point(4, 33);
-            this.ExamTab.Name = "ExamTab";
-            this.ExamTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ExamTab.Size = new System.Drawing.Size(1280, 610);
-            this.ExamTab.TabIndex = 4;
-            this.ExamTab.Text = "Examen GUI";
-            this.ExamTab.UseVisualStyleBackColor = true;
-            // 
-            // ucExamGUI
-            // 
-            this.ucExamGUI.BackColor = System.Drawing.Color.Gray;
-            this.ucExamGUI.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucExamGUI.ExamGUI = true;
-            this.ucExamGUI.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucExamGUI.Location = new System.Drawing.Point(3, 3);
-            this.ucExamGUI.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ucExamGUI.Name = "ucExamGUI";
-            this.ucExamGUI.Size = new System.Drawing.Size(1274, 604);
-            this.ucExamGUI.TabIndex = 1;
-            // 
             // ExamFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -224,8 +224,8 @@
             this.prefTab.ResumeLayout(false);
             this.dbTab.ResumeLayout(false);
             this.EvalTab.ResumeLayout(false);
-            this.TLP.ResumeLayout(false);
             this.ExamTab.ResumeLayout(false);
+            this.TLP.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

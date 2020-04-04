@@ -10,6 +10,7 @@ namespace Exam
     {
         partial class AnswersDataTable
         {
+
         }
 
         public partial class ExamsListRow

@@ -22,6 +22,10 @@ namespace Exam
             form.Set(ref Interface);
        
             Application.Run(form);
+
+
+           
+
         }
     }
 }
